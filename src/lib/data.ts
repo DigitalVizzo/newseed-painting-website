@@ -63,13 +63,6 @@ export const services = [
     icon: 'commercial',
   },
   {
-    id: 'roof',
-    title: 'Roof Painting',
-    description:
-      "We assess, clean, repair, and repaint with specialist roof coatings that seal against leaks, block UV damage, and dramatically improve the look of your entire property.",
-    icon: 'roof',
-  },
-  {
     id: 'strata',
     title: 'Strata Painting',
     description:

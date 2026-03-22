@@ -1,96 +1,144 @@
-'use client';
-// TODO: Replace placeholder reviews with real Google Reviews
-import { reviews } from '@/lib/data';
-
-function StarRating({ count }: { count: number }) {
-  return (
-    <div className="flex gap-[2px]">
-      {Array.from({ length: count }).map((_, i) => (
-        <span key={i} className="text-[#E8A824] text-base">★</span>
-      ))}
-    </div>
-  );
-}
+import { reviews } from '@/lib/data'
 
 export default function Reviews() {
   return (
     <section
       id="reviews"
-      className="px-4 py-12 md:px-8 md:py-16 lg:px-16 lg:py-24"
-      style={{ backgroundColor: '#F5F5F0' }}
+      style={{ background: '#111111', padding: '6rem 0' }}
     >
-      <div className="max-w-[1200px] mx-auto">
-        {/* Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="inline-block w-8 h-px bg-[#E8A824]" />
-            <span className="text-[#E8A824] text-xs font-medium tracking-[0.2em] uppercase">
-              Client Reviews
-            </span>
-            <span className="inline-block w-8 h-px bg-[#E8A824]" />
-          </div>
-          <h2 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-[#0a0a0a] leading-tight tracking-tight mb-4">
-            What Our Clients Say
-          </h2>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
+        {reviews.inviteMode ? (
+          /* Invite Mode */
+          <div className="fade-in" style={{ maxWidth: 680, margin: '0 auto', textAlign: 'center' }}>
+            {/* Stars */}
+            <div style={{ marginBottom: 24 }}>
+              <span style={{ fontSize: '3rem', color: '#E8A824', letterSpacing: 4 }}>★★★★★</span>
+            </div>
 
-          {/* Google badge */}
-          <div
-            className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 text-sm font-medium text-[#0a0a0a]"
-            style={{ border: '1px solid rgba(0,0,0,0.08)' }}
-          >
-            <span className="text-[#E8A824]">★★★★★</span>
-            <span>5.0 on Google</span>
-            <span className="text-xs" style={{ color: '#6B6B6B' }}>· 47 reviews</span>
-          </div>
-        </div>
-
-        {/* Reviews grid — 1 col mobile, 2 col md, 3 col lg */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
-          {reviews.map((review) => (
-            <div
-              key={review.name}
-              className="rounded-xl p-5 md:p-7 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+            {/* Title */}
+            <h2
+              className="font-playfair"
               style={{
-                backgroundColor: 'rgba(255,255,255,0.8)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                border: '1px solid rgba(0,0,0,0.06)',
-                boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+                color: 'white',
+                fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
+                fontWeight: 700,
+                marginBottom: 20,
+                lineHeight: 1.2,
               }}
             >
-              {/* Stars */}
-              <StarRating count={review.rating} />
+              {reviews.inviteTitle}
+            </h2>
 
-              {/* Text */}
-              <p
-                className="text-sm md:text-base leading-relaxed my-4 italic"
-                style={{ color: '#374151' }}
+            {/* Text */}
+            <p style={{
+              color: 'rgba(255,255,255,0.55)',
+              fontSize: '1.05rem',
+              lineHeight: 1.75,
+              marginBottom: 16,
+            }}>
+              {reviews.inviteText}
+            </p>
+
+            {/* Note */}
+            <p style={{
+              color: 'rgba(255,255,255,0.35)',
+              fontSize: '0.9rem',
+              lineHeight: 1.6,
+              marginBottom: 36,
+              fontStyle: 'italic',
+            }}>
+              {reviews.inviteNote}
+            </p>
+
+            {/* CTA */}
+            <a
+              href="https://maps.google.com/?q=New+Seed+Painting+Group"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-block',
+                background: '#E8A824',
+                color: '#0a0a0a',
+                fontWeight: 700,
+                padding: '1rem 2.5rem',
+                borderRadius: 9999,
+                textDecoration: 'none',
+                fontSize: '1rem',
+                boxShadow: '0 8px 30px rgba(232,168,36,0.2)',
+                transition: 'background 0.2s ease',
+                marginBottom: 28,
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#CC8C1A')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#E8A824')}
+            >
+              {reviews.inviteCta}
+            </a>
+
+            <div>
+              <a
+                href="https://maps.google.com/?q=New+Seed+Painting+Group"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: 'rgba(255,255,255,0.35)',
+                  fontSize: '0.875rem',
+                  textDecoration: 'none',
+                  transition: 'color 0.2s ease',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.7)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.35)')}
               >
-                &ldquo;{review.text}&rdquo;
-              </p>
-
-              {/* Author */}
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="font-semibold text-sm md:text-base text-[#0a0a0a]">
-                    {review.name}
-                  </div>
-                  <div className="text-xs mt-0.5" style={{ color: '#6B6B6B' }}>
-                    {review.date}
-                  </div>
-                </div>
-                {/* Google G icon */}
-                <div
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
-                  style={{ backgroundColor: '#f1f3f4', color: '#4285F4' }}
-                >
-                  G
-                </div>
-              </div>
+                Or read what our first clients are saying →
+              </a>
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          /* Review List Mode */
+          <div>
+            <div className="fade-in" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+              <p style={{ color: '#E8A824', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>
+                CLIENT STORIES
+              </p>
+              <h2 className="font-playfair" style={{ color: 'white', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800 }}>
+                What Our Clients Say
+              </h2>
+            </div>
+            <div className="fade-in reviews-grid" style={{ display: 'grid', gap: 20 }}>
+              {reviews.list.map((review, i) => (
+                <div key={i} style={{
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: 16,
+                  padding: '1.75rem',
+                  background: 'rgba(255,255,255,0.02)',
+                }}>
+                  <div style={{ color: '#E8A824', marginBottom: 12, fontSize: '1.1rem', letterSpacing: 2 }}>
+                    {'★'.repeat(review.rating)}
+                  </div>
+                  <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: 16, fontStyle: 'italic' }}>
+                    &ldquo;{review.text}&rdquo;
+                  </p>
+                  <div>
+                    <p style={{ color: 'white', fontWeight: 600, fontSize: '0.9rem' }}>{review.name}</p>
+                    <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.8rem' }}>{review.location}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
+
+      <style>{`
+        .reviews-grid {
+          grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+          .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+          .reviews-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+      `}</style>
     </section>
-  );
+  )
 }

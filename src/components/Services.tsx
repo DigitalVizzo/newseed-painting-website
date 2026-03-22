@@ -1,156 +1,122 @@
-'use client';
+import { services } from '@/lib/data'
 
-import { services } from '@/lib/data';
+const serviceIcons: Record<string, string> = {
+  interior: '🏠',
+  exterior: '🏡',
+  commercial: '🏢',
+  strata: '🏗️',
+  newbuild: '🔨',
+}
 
-// SVG icons for each service
-const ServiceIcons: Record<string, React.ReactNode> = {
-  interior: (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M4 13h24" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M12 8V6M20 8V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <rect x="13" y="18" width="6" height="8" rx="1" stroke="currentColor" strokeWidth="1.3" />
-    </svg>
-  ),
-  exterior: (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 4L4 14h3v13h18V14h3L16 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      <rect x="12" y="20" width="8" height="7" rx="1" stroke="currentColor" strokeWidth="1.3" />
-    </svg>
-  ),
-  commercial: (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="6" width="24" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M4 14h24M14 6v20M14 14V6" stroke="currentColor" strokeWidth="1.5" />
-      <rect x="17" y="19" width="5" height="7" stroke="currentColor" strokeWidth="1.3" />
-    </svg>
-  ),
-  roof: (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 16L16 4l12 12" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M7 16v12h18V16" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M2 16h28" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  ),
-  strata: (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="3" y="6" width="11" height="20" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
-      <rect x="18" y="10" width="11" height="16" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M6 11h5M6 15h5M6 19h5M21 15h5M21 19h5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-    </svg>
-  ),
-  newbuild: (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 28h24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <rect x="8" y="14" width="16" height="14" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M4 14h24M12 14V10l4-4 4 4v4" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      <rect x="13" y="19" width="6" height="9" stroke="currentColor" strokeWidth="1.3" />
-    </svg>
-  ),
-};
+// Filter out roof painting
+const filteredServices = services.filter((s) => s.id !== 'roof')
 
 export default function Services() {
   return (
     <section
       id="services"
-      className="px-4 py-12 md:px-8 md:py-16 lg:px-16 lg:py-24"
-      style={{ backgroundColor: '#F5F5F0' }}
+      style={{ background: '#111111', padding: '6rem 0' }}
     >
-      <div className="max-w-[1200px] mx-auto">
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
         {/* Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="inline-block w-8 h-px bg-[#E8A824]" />
-            <span className="text-[#E8A824] text-xs font-medium tracking-[0.2em] uppercase">
-              Our Services
-            </span>
-            <span className="inline-block w-8 h-px bg-[#E8A824]" />
-          </div>
+        <div className="fade-in" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          <p style={{
+            color: '#E8A824',
+            fontSize: '0.8rem',
+            fontWeight: 600,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            marginBottom: 16,
+          }}>
+            WHAT WE DO
+          </p>
           <h2
-            className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-[#0a0a0a] leading-tight tracking-tight"
+            className="font-playfair"
+            style={{
+              color: 'white',
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: 800,
+              marginBottom: 12,
+            }}
           >
-            What We Do Best
+            Premium Painting Services
           </h2>
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem' }}>
+            for Sydney&apos;s Northern Beaches and Greater Sydney
+          </p>
         </div>
 
-        {/* Grid — 1 col mobile, 2 col md, 3 col lg */}
-        <div
-          className="grid grid-cols-1 gap-px md:grid-cols-2 lg:grid-cols-3 rounded-lg overflow-hidden"
-          style={{ backgroundColor: 'rgba(0,0,0,0.06)' }}
-        >
-          {services.map((service) => (
+        {/* First row: 3 cards */}
+        <div className="fade-in services-row-3" style={{ display: 'grid', gap: 20, marginBottom: 20 }}>
+          {filteredServices.slice(0, 3).map((service) => (
+            <ServiceCard key={service.id} service={service} />
+          ))}
+        </div>
+
+        {/* Second row: 2 cards centered */}
+        <div className="fade-in services-row-2" style={{ display: 'grid', gap: 20 }}>
+          {filteredServices.slice(3, 5).map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </div>
+
+      <style>{`
+        .services-row-3 {
+          grid-template-columns: 1fr;
+        }
+        .services-row-2 {
+          grid-template-columns: 1fr;
+        }
+        @media (min-width: 640px) {
+          .services-row-3 { grid-template-columns: repeat(2, 1fr); }
+          .services-row-2 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+          .services-row-3 { grid-template-columns: repeat(3, 1fr); }
+          .services-row-2 {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 66.666%;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+      `}</style>
     </section>
-  );
+  )
 }
 
-function ServiceCard({ service }: { service: typeof services[0] }) {
+function ServiceCard({ service }: { service: typeof filteredServices[0] }) {
   return (
     <div
-      className="service-card bg-white p-6 md:p-10 cursor-default relative overflow-hidden transition-colors duration-300 group"
+      style={{
+        border: '1px solid rgba(255,255,255,0.08)',
+        borderRadius: 16,
+        padding: '2rem',
+        background: 'rgba(255,255,255,0.02)',
+        transition: 'all 0.5s ease',
+        cursor: 'default',
+      }}
       onMouseEnter={(e) => {
-        const card = e.currentTarget as HTMLElement;
-        card.style.backgroundColor = '#0a0a0a';
-        const title = card.querySelector('.card-title') as HTMLElement;
-        const desc = card.querySelector('.card-desc') as HTMLElement;
-        const iconWrap = card.querySelector('.card-icon') as HTMLElement;
-        if (title) title.style.color = '#ffffff';
-        if (desc) desc.style.color = 'rgba(255,255,255,0.55)';
-        if (iconWrap) {
-          iconWrap.style.borderColor = 'rgba(232,168,36,0.3)';
-          iconWrap.style.backgroundColor = 'rgba(232,168,36,0.08)';
-          iconWrap.style.color = '#E8A824';
-        }
+        const el = e.currentTarget
+        el.style.borderColor = 'rgba(232,168,36,0.4)'
+        el.style.background = 'rgba(255,255,255,0.05)'
       }}
       onMouseLeave={(e) => {
-        const card = e.currentTarget as HTMLElement;
-        card.style.backgroundColor = '#ffffff';
-        const title = card.querySelector('.card-title') as HTMLElement;
-        const desc = card.querySelector('.card-desc') as HTMLElement;
-        const iconWrap = card.querySelector('.card-icon') as HTMLElement;
-        if (title) title.style.color = '#0a0a0a';
-        if (desc) desc.style.color = '#6B6B6B';
-        if (iconWrap) {
-          iconWrap.style.borderColor = 'rgba(232,168,36,0.2)';
-          iconWrap.style.backgroundColor = 'rgba(232,168,36,0.04)';
-          iconWrap.style.color = '#E8A824';
-        }
+        const el = e.currentTarget
+        el.style.borderColor = 'rgba(255,255,255,0.08)'
+        el.style.background = 'rgba(255,255,255,0.02)'
       }}
     >
-      {/* Icon */}
-      <div
-        className="card-icon w-14 h-14 rounded-[10px] flex items-center justify-center mb-5 transition-all duration-300"
-        style={{
-          border: '1px solid rgba(232,168,36,0.2)',
-          backgroundColor: 'rgba(232,168,36,0.04)',
-          color: '#E8A824',
-        }}
-      >
-        {ServiceIcons[service.icon]}
+      <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>
+        {serviceIcons[service.id] || '🎨'}
       </div>
-
-      {/* Title */}
-      <h3
-        className="card-title text-lg md:text-xl font-semibold text-[#0a0a0a] mb-3 tracking-tight transition-colors duration-300"
-      >
+      <h3 style={{ color: 'white', fontWeight: 600, fontSize: '1.2rem', marginBottom: 12 }}>
         {service.title}
       </h3>
-
-      {/* Description */}
-      <p
-        className="card-desc text-sm md:text-base leading-relaxed transition-colors duration-300"
-        style={{ color: '#6B6B6B' }}
-      >
+      <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', lineHeight: 1.7 }}>
         {service.description}
       </p>
-
-      {/* Gold accent line on hover */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#E8A824] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"
-      />
     </div>
-  );
+  )
 }

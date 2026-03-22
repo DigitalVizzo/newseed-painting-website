@@ -1,91 +1,127 @@
-'use client';
+import { cta, contact } from '@/lib/data'
 
-import { contact } from '@/lib/data';
+const PhoneIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.98-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/>
+  </svg>
+)
+
+const MailIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="16" x="2" y="4" rx="2"/>
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+  </svg>
+)
 
 export default function CtaSection() {
   return (
     <section
       id="contact"
-      className="px-4 py-12 md:px-8 md:py-16 lg:px-16 lg:py-24 relative overflow-hidden"
-      style={{ backgroundColor: '#0a0a0a' }}
+      style={{ background: '#0a0a0a', padding: '2rem 0 6rem' }}
     >
-      {/* Background accent */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 30% 50%, rgba(232,168,36,0.05) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(232,168,36,0.03) 0%, transparent 40%)',
-        }}
-      />
-
-      <div className="max-w-[800px] mx-auto text-center relative z-10">
-        {/* Eyebrow */}
-        <div className="flex items-center justify-center gap-3 mb-5">
-          <span className="inline-block w-8 h-px bg-[#E8A824]" />
-          <span className="text-[#E8A824] text-xs font-medium tracking-[0.2em] uppercase">
-            Free Quote
-          </span>
-          <span className="inline-block w-8 h-px bg-[#E8A824]" />
-        </div>
-
-        <h2
-          className="font-playfair text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight mb-4"
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
+        <div
+          className="fade-in"
+          style={{
+            background: 'linear-gradient(135deg, #CC8C1A 0%, #E8A824 50%, #D4A030 100%)',
+            borderRadius: 24,
+            padding: 'clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem)',
+            textAlign: 'center',
+          }}
         >
-          Ready to Transform{' '}
-          <span style={{ color: '#E8A824' }}>Your Property?</span>
-        </h2>
-
-        <p
-          className="text-sm md:text-base leading-relaxed mb-8 max-w-[520px] mx-auto"
-          style={{ color: 'rgba(255,255,255,0.6)', lineHeight: 1.7 }}
-        >
-          Contact us today for a free, no-obligation quote. We service all areas
-          across Greater Sydney.
-        </p>
-
-        {/* CTA Button — full width on mobile, auto on md+ */}
-        <div className="flex flex-col items-center gap-4 md:flex-row md:justify-center mb-8">
-          <a
-            href={`mailto:${contact.email}`}
-            className="w-full max-w-xs md:w-auto no-underline inline-flex items-center justify-center text-[#0a0a0a] font-bold text-sm md:text-base py-4 px-8 rounded tracking-wide transition-all duration-200 hover:-translate-y-0.5"
-            style={{ backgroundColor: '#E8A824' }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.backgroundColor = '#CC8C1A';
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.backgroundColor = '#E8A824';
+          <h2
+            className="font-playfair"
+            style={{
+              color: '#0a0a0a',
+              fontSize: 'clamp(2rem, 4.5vw, 3.25rem)',
+              fontWeight: 800,
+              marginBottom: 16,
+              lineHeight: 1.15,
             }}
           >
-            Get Your Free Quote →
-          </a>
-        </div>
+            {cta.title}
+          </h2>
+          <p style={{
+            color: 'rgba(10,10,10,0.7)',
+            fontSize: '1.1rem',
+            marginBottom: 36,
+            lineHeight: 1.6,
+          }}>
+            {cta.subtitle}
+          </p>
 
-        {/* Contact info — stacked on mobile, row on md+ */}
-        <div className="flex flex-col gap-3 items-center md:flex-row md:gap-8 md:justify-center text-sm md:text-base">
+          {/* Main CTA button */}
           <a
             href={contact.phoneHref}
-            className="flex items-center gap-2 no-underline transition-colors duration-200 hover:text-[#E8A824]"
-            style={{ color: 'rgba(255,255,255,0.7)' }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#E8A824')}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)')}
+            style={{
+              display: 'inline-block',
+              background: '#0a0a0a',
+              color: 'white',
+              fontWeight: 700,
+              padding: '1.25rem 2.5rem',
+              borderRadius: 9999,
+              textDecoration: 'none',
+              fontSize: '1.1rem',
+              marginBottom: 24,
+              transition: 'background 0.2s ease',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(10,10,10,0.8)')}
+            onMouseLeave={(e) => (e.currentTarget.style.background = '#0a0a0a')}
           >
-            <span>📞</span>
-            <span>{contact.phone}</span>
+            {cta.button}
           </a>
-          <a
-            href={contact.emailHref}
-            className="flex items-center gap-2 no-underline transition-colors duration-200 hover:text-[#E8A824]"
-            style={{ color: 'rgba(255,255,255,0.7)' }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#E8A824')}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)')}
-          >
-            <span>✉️</span>
-            <span>{contact.email}</span>
-          </a>
+
+          <p style={{
+            color: 'rgba(10,10,10,0.55)',
+            fontSize: '0.875rem',
+            marginBottom: 32,
+          }}>
+            {cta.note}
+          </p>
+
+          {/* Contact links */}
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            gap: 24,
+          }}>
+            <a
+              href={contact.phoneHref}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                color: '#0a0a0a',
+                fontWeight: 600,
+                textDecoration: 'none',
+                fontSize: '1rem',
+                transition: 'opacity 0.2s ease',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.textDecoration = 'underline')}
+              onMouseLeave={(e) => (e.currentTarget.style.textDecoration = 'none')}
+            >
+              <PhoneIcon /> {contact.phone}
+            </a>
+            <a
+              href={contact.emailHref}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                color: '#0a0a0a',
+                fontWeight: 600,
+                textDecoration: 'none',
+                fontSize: '1rem',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.textDecoration = 'underline')}
+              onMouseLeave={(e) => (e.currentTarget.style.textDecoration = 'none')}
+            >
+              <MailIcon /> {contact.email}
+            </a>
+          </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

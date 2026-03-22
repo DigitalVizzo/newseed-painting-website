@@ -1,77 +1,141 @@
-'use client';
-
-import { areas } from '@/lib/data';
+import { areas } from '@/lib/data'
 
 export default function Areas() {
   return (
     <section
       id="areas"
-      className="px-4 py-12 md:px-8 md:py-16 lg:px-16 lg:py-24 bg-white"
+      style={{ background: '#0a0a0a', padding: '6rem 0' }}
     >
-      <div className="max-w-[1200px] mx-auto text-center">
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
         {/* Header */}
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <span className="inline-block w-8 h-px bg-[#E8A824]" />
-          <span className="text-[#E8A824] text-xs font-medium tracking-[0.2em] uppercase">
-            Service Areas
-          </span>
-          <span className="inline-block w-8 h-px bg-[#E8A824]" />
-        </div>
-
-        <h2 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-[#0a0a0a] leading-tight tracking-tight mb-3">
-          We Cover All of Greater Sydney
-        </h2>
-        <p className="text-sm md:text-base mb-8 md:mb-12" style={{ color: '#6B6B6B' }}>
-          From the Eastern Suburbs to the Blue Mountains — we come to you.
-        </p>
-
-        {/* Areas badges — flex-wrap, smaller on mobile */}
-        <div className="flex flex-wrap gap-2 md:gap-3 justify-center">
-          {areas.map((area) => (
-            <AreaBadge key={area} area={area} />
-          ))}
-        </div>
-
-        {/* Disclaimer */}
-        <p className="text-xs md:text-sm mt-8" style={{ color: '#6B6B6B' }}>
-          Not sure if we service your area?{' '}
-          <a
-            href="#contact"
-            className="hover:opacity-80 transition-opacity font-medium underline"
-            style={{ color: '#E8A824' }}
+        <div className="fade-in" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          <p style={{
+            color: '#E8A824',
+            fontSize: '0.8rem',
+            fontWeight: 600,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            marginBottom: 16,
+          }}>
+            WHERE WE WORK
+          </p>
+          <h2
+            className="font-playfair"
+            style={{
+              color: 'white',
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: 800,
+              marginBottom: 20,
+            }}
           >
-            Contact us
-          </a>{' '}
-          — we&apos;ll let you know.
+            {areas.title}
+          </h2>
+          <p style={{
+            color: 'rgba(255,255,255,0.55)',
+            fontSize: '1.05rem',
+            lineHeight: 1.7,
+            maxWidth: 680,
+            margin: '0 auto',
+          }}>
+            {areas.intro}
+          </p>
+        </div>
+
+        {/* Northern Beaches */}
+        <div className="fade-in" style={{ marginBottom: 40 }}>
+          <p style={{
+            color: 'rgba(255,255,255,0.8)',
+            fontWeight: 600,
+            fontSize: '1rem',
+            marginBottom: 16,
+          }}>
+            Northern Beaches — Our Heartland
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+            {areas.northern.map((area) => (
+              <span
+                key={area}
+                style={{
+                  background: 'rgba(232,168,36,0.1)',
+                  border: '1px solid rgba(232,168,36,0.3)',
+                  color: '#E8A824',
+                  padding: '6px 14px',
+                  borderRadius: 9999,
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  cursor: 'default',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget
+                  el.style.background = '#E8A824'
+                  el.style.color = '#0a0a0a'
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget
+                  el.style.background = 'rgba(232,168,36,0.1)'
+                  el.style.color = '#E8A824'
+                }}
+              >
+                {area}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Greater Sydney */}
+        <div className="fade-in" style={{ marginBottom: 32 }}>
+          <p style={{
+            color: 'rgba(255,255,255,0.8)',
+            fontWeight: 600,
+            fontSize: '1rem',
+            marginBottom: 16,
+          }}>
+            Greater Sydney
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+            {areas.greater.map((area) => (
+              <span
+                key={area}
+                style={{
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  color: 'rgba(255,255,255,0.7)',
+                  padding: '6px 14px',
+                  borderRadius: 9999,
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  cursor: 'default',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget
+                  el.style.background = 'rgba(255,255,255,0.1)'
+                  el.style.color = 'white'
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget
+                  el.style.background = 'rgba(255,255,255,0.05)'
+                  el.style.color = 'rgba(255,255,255,0.7)'
+                }}
+              >
+                {area}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Note */}
+        <p className="fade-in" style={{
+          color: 'rgba(255,255,255,0.3)',
+          fontSize: '0.9rem',
+          fontStyle: 'italic',
+          textAlign: 'center',
+          marginTop: 16,
+        }}>
+          {areas.note}
         </p>
       </div>
     </section>
-  );
-}
-
-function AreaBadge({ area }: { area: string }) {
-  return (
-    <span
-      className="inline-block px-3 py-1.5 text-sm rounded-full font-medium cursor-default transition-all duration-200 md:px-4 md:py-2 md:text-base"
-      style={{
-        backgroundColor: '#F5F5F0',
-        color: '#374151',
-        border: '1px solid rgba(0,0,0,0.06)',
-      }}
-      onMouseEnter={(e) => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.backgroundColor = '#E8A824';
-        el.style.color = '#0a0a0a';
-        el.style.borderColor = '#E8A824';
-      }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.backgroundColor = '#F5F5F0';
-        el.style.color = '#374151';
-        el.style.borderColor = 'rgba(0,0,0,0.06)';
-      }}
-    >
-      {area}
-    </span>
-  );
+  )
 }

@@ -1,142 +1,183 @@
-'use client';
+import Image from 'next/image'
+import { contact, services, areas } from '@/lib/data'
 
-import Logo from './Logo';
-import { contact, services } from '@/lib/data';
+const filteredServices = services.filter((s) => s.id !== 'roof')
 
-const quickLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Reviews', href: '#reviews' },
-  { label: 'Areas', href: '#areas' },
-  { label: 'Contact', href: '#contact' },
-];
+const PhoneIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.98-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/>
+  </svg>
+)
+
+const MailIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="16" x="2" y="4" rx="2"/>
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+  </svg>
+)
 
 export default function Footer() {
   return (
-    <footer
-      className="px-4 pt-10 pb-6 md:px-8 md:pt-14 lg:px-16"
-      style={{ backgroundColor: '#000000', color: 'rgba(255,255,255,0.65)' }}
-    >
-      <div className="max-w-[1200px] mx-auto">
-        {/* Top grid — 1 col mobile, 2 col md, 4 col lg */}
-        <div
-          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 mb-10 pb-10"
-          style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
-        >
-          {/* Brand column */}
-          <div className="md:col-span-2 lg:col-span-1">
-            <div className="mb-4">
-              <Logo variant="dark" size={44} />
+    <footer style={{
+      background: '#0a0a0a',
+      borderTop: '1px solid rgba(255,255,255,0.05)',
+      paddingTop: '4rem',
+    }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
+        <div className="footer-grid" style={{ display: 'grid', gap: '3rem', marginBottom: '3rem' }}>
+          {/* Col 1: Logo + tagline + contacts */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+              <Image
+                src="/logo-dark.png"
+                alt="New Seed Painting Group"
+                width={80}
+                height={80}
+                style={{ borderRadius: '50%', objectFit: 'cover' }}
+              />
             </div>
-            <p className="text-sm leading-relaxed max-w-[240px]" style={{ lineHeight: 1.7 }}>
-              Sydney&apos;s trusted painting professionals. Licensed, insured, and
-              committed to exceptional results.
+            <p style={{
+              color: 'rgba(255,255,255,0.4)',
+              fontStyle: 'italic',
+              fontSize: '0.875rem',
+              marginBottom: 24,
+              lineHeight: 1.5,
+            }}>
+              Planting the Seed of Transformation
             </p>
-            <p className="text-xs mt-3" style={{ color: 'rgba(255,255,255,0.35)' }}>
-              Painters License: {contact.license}
-            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <a href={contact.phoneHref} style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                color: 'rgba(255,255,255,0.5)',
+                textDecoration: 'none',
+                fontSize: '0.875rem',
+                transition: 'color 0.2s ease',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'white')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
+              >
+                <PhoneIcon /> {contact.phone}
+              </a>
+              <a href={contact.emailHref} style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                color: 'rgba(255,255,255,0.5)',
+                textDecoration: 'none',
+                fontSize: '0.875rem',
+                transition: 'color 0.2s ease',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'white')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
+              >
+                <MailIcon /> {contact.email}
+              </a>
+              <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.8rem', marginTop: 4 }}>
+                {contact.address}
+              </p>
+            </div>
           </div>
 
-          {/* Quick links */}
+          {/* Col 2: Services */}
           <div>
-            <h4
-              className="text-white text-xs font-semibold tracking-[0.15em] uppercase mb-4"
-            >
-              Quick Links
-            </h4>
-            <ul className="flex flex-col gap-2.5">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="no-underline text-sm transition-colors duration-200 hover:text-[#E8A824]"
-                    style={{ color: 'rgba(255,255,255,0.55)' }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#E8A824')}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)')}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services column */}
-          <div>
-            <h4
-              className="text-white text-xs font-semibold tracking-[0.15em] uppercase mb-4"
-            >
+            <h4 style={{ color: 'white', fontWeight: 600, fontSize: '0.9rem', marginBottom: 16, letterSpacing: '0.05em' }}>
               Services
             </h4>
-            <ul className="flex flex-col gap-2.5">
-              {services.map((service) => (
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {filteredServices.map((service) => (
                 <li key={service.id}>
-                  <a
-                    href="#services"
-                    className="no-underline text-sm transition-colors duration-200"
-                    style={{ color: 'rgba(255,255,255,0.55)' }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#E8A824')}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)')}
+                  <button
+                    onClick={() => {
+                      const el = document.querySelector('#services')
+                      if (el) el.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      color: 'rgba(255,255,255,0.45)',
+                      fontSize: '0.875rem',
+                      fontFamily: 'inherit',
+                      padding: 0,
+                      transition: 'color 0.2s ease',
+                      textAlign: 'left',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
                   >
                     {service.title}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact column */}
+          {/* Col 3: Areas */}
           <div>
-            <h4
-              className="text-white text-xs font-semibold tracking-[0.15em] uppercase mb-4"
-            >
-              Contact
+            <h4 style={{ color: 'white', fontWeight: 600, fontSize: '0.9rem', marginBottom: 16, letterSpacing: '0.05em' }}>
+              Service Areas
             </h4>
-            <div className="flex flex-col gap-3">
-              <a
-                href={contact.phoneHref}
-                className="no-underline text-sm flex items-center gap-2 transition-colors duration-200"
-                style={{ color: 'rgba(255,255,255,0.55)' }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#E8A824')}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)')}
-              >
-                <span>📞</span> {contact.phone}
-              </a>
-              <a
-                href={contact.emailHref}
-                className="no-underline text-sm flex items-center gap-2 transition-colors duration-200"
-                style={{ color: 'rgba(255,255,255,0.55)' }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#E8A824')}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)')}
-              >
-                <span>✉️</span> {contact.email}
-              </a>
-              <div
-                className="text-sm flex items-center gap-2"
-                style={{ color: 'rgba(255,255,255,0.55)' }}
-              >
-                <span>📍</span> {contact.address}
+            <div style={{ marginBottom: 16 }}>
+              <p style={{ color: '#E8A824', fontSize: '0.8rem', fontWeight: 600, marginBottom: 8 }}>
+                Northern Beaches
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                {areas.northern.slice(0, 8).map((area) => (
+                  <span key={area} style={{
+                    color: 'rgba(255,255,255,0.4)',
+                    fontSize: '0.8rem',
+                  }}>
+                    {area} ·
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', fontWeight: 600, marginBottom: 8 }}>
+                Greater Sydney
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                {areas.greater.slice(0, 5).map((area) => (
+                  <span key={area} style={{
+                    color: 'rgba(255,255,255,0.35)',
+                    fontSize: '0.8rem',
+                  }}>
+                    {area} ·
+                  </span>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar — stacked on mobile, row on md+ */}
-        <div className="flex flex-col gap-3 items-center md:flex-row md:justify-between">
-          <p className="text-xs text-center md:text-left" style={{ color: 'rgba(255,255,255,0.3)' }}>
-            © 2026 New Seed Painting Group. All Rights Reserved. | Sydney, NSW, Australia
+        {/* Bottom bar */}
+        <div style={{
+          borderTop: '1px solid rgba(255,255,255,0.05)',
+          padding: '1.5rem 0',
+          textAlign: 'center',
+        }}>
+          <p style={{
+            color: 'rgba(255,255,255,0.2)',
+            fontSize: '0.75rem',
+            lineHeight: 1.6,
+          }}>
+            © 2026 New Seed Painting Group Pty Ltd · ABN {contact.abn} · {contact.license}
           </p>
-          <div className="flex gap-1 items-center">
-            {[1, 2, 3, 4, 5].map((s) => (
-              <span key={s} className="text-[#E8A824] text-xs">★</span>
-            ))}
-            <span className="text-xs ml-1" style={{ color: 'rgba(255,255,255,0.3)' }}>
-              5.0 Google Rating
-            </span>
-          </div>
         </div>
       </div>
+
+      <style>{`
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1.5fr 1fr 1fr;
+          }
+        }
+      `}</style>
     </footer>
-  );
+  )
 }

@@ -1,57 +1,121 @@
-import { processSteps } from '@/lib/data';
+import { processSteps } from '@/lib/data'
 
 export default function Process() {
   return (
     <section
       id="process"
-      className="px-4 py-12 md:px-8 md:py-16 lg:px-16 lg:py-24 bg-white"
+      style={{ background: '#0a0a0a', padding: '6rem 0' }}
     >
-      <div className="max-w-[1200px] mx-auto">
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
         {/* Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="inline-block w-8 h-px bg-[#E8A824]" />
-            <span className="text-[#E8A824] text-xs font-medium tracking-[0.2em] uppercase">
-              Our Process
-            </span>
-            <span className="inline-block w-8 h-px bg-[#E8A824]" />
-          </div>
-          <h2 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-[#0a0a0a] leading-tight tracking-tight">
-            How We Work
+        <div className="fade-in" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <p style={{
+            color: '#E8A824',
+            fontSize: '0.8rem',
+            fontWeight: 600,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            marginBottom: 16,
+          }}>
+            HOW IT WORKS
+          </p>
+          <h2
+            className="font-playfair"
+            style={{
+              color: 'white',
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: 800,
+            }}
+          >
+            From First Call to Final Coat
           </h2>
         </div>
 
-        {/* Steps — vertical on mobile, horizontal on lg */}
-        <div className="relative flex flex-col gap-8 lg:flex-row lg:gap-0">
-          {/* Connecting line — only visible lg+ */}
-          <div
-            className="hidden lg:block absolute top-7 left-[10%] right-[10%] h-px"
-            style={{ backgroundColor: 'rgba(232,168,36,0.2)' }}
-          />
-
-          {processSteps.map((step, index) => (
-            <div
-              key={step.step}
-              className="flex gap-4 relative lg:flex-col lg:items-center lg:flex-1 lg:gap-0"
-            >
-              {/* Step number circle */}
-              <div
-                className="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold relative z-10 lg:mb-6 lg:mx-auto"
-                style={{
-                  border: '1.5px solid #E8A824',
-                  backgroundColor: index % 2 === 0 ? '#E8A824' : '#ffffff',
-                  color: index % 2 === 0 ? '#0a0a0a' : '#E8A824',
-                }}
-              >
-                {step.step}
-              </div>
-
-              {/* Content */}
-              <div className="lg:text-center">
-                <h3 className="text-base md:text-lg font-semibold text-[#0a0a0a] mb-2 tracking-tight">
+        {/* Desktop: 4 columns with connector */}
+        <div className="fade-in process-desktop" style={{ display: 'none' }}>
+          {processSteps.map((step, i) => (
+            <div key={step.step} style={{ position: 'relative', flex: 1 }}>
+              {/* Connector line */}
+              {i < processSteps.length - 1 && (
+                <div style={{
+                  position: 'absolute',
+                  top: 28,
+                  left: '50%',
+                  right: '-50%',
+                  borderTop: '1px dashed rgba(232,168,36,0.2)',
+                  zIndex: 0,
+                }} />
+              )}
+              <div style={{ position: 'relative', zIndex: 1, padding: '0 1rem' }}>
+                {/* Number background */}
+                <div style={{ position: 'relative', marginBottom: 16 }}>
+                  <span
+                    className="font-playfair"
+                    style={{
+                      fontSize: '5rem',
+                      fontWeight: 700,
+                      color: 'rgba(232,168,36,0.15)',
+                      lineHeight: 1,
+                      display: 'block',
+                      userSelect: 'none',
+                    }}
+                  >
+                    {String(step.step).padStart(2, '0')}
+                  </span>
+                  <div style={{
+                    position: 'absolute',
+                    top: 8,
+                    left: 0,
+                    width: 40,
+                    height: 40,
+                    borderRadius: '50%',
+                    background: 'rgba(232,168,36,0.15)',
+                    border: '1px solid rgba(232,168,36,0.3)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                    <span style={{ color: '#E8A824', fontWeight: 700, fontSize: '0.875rem' }}>{step.step}</span>
+                  </div>
+                </div>
+                <h3 style={{ color: 'white', fontWeight: 600, fontSize: '1rem', marginBottom: 10, lineHeight: 1.3 }}>
                   {step.title}
                 </h3>
-                <p className="text-sm md:text-base leading-relaxed" style={{ color: '#6B6B6B' }}>
+                <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile: vertical list */}
+        <div className="fade-in process-mobile" style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+          {processSteps.map((step) => (
+            <div key={step.step} style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
+              {/* Number */}
+              <div style={{ flexShrink: 0, position: 'relative' }}>
+                <span
+                  className="font-playfair"
+                  style={{
+                    fontSize: '3.5rem',
+                    fontWeight: 700,
+                    color: 'rgba(232,168,36,0.2)',
+                    lineHeight: 1,
+                    display: 'block',
+                    userSelect: 'none',
+                    width: 60,
+                    textAlign: 'center',
+                  }}
+                >
+                  {String(step.step).padStart(2, '0')}
+                </span>
+              </div>
+              <div style={{ paddingTop: 4 }}>
+                <h3 style={{ color: 'white', fontWeight: 600, fontSize: '1.05rem', marginBottom: 8, lineHeight: 1.3 }}>
+                  {step.title}
+                </h3>
+                <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', lineHeight: 1.65 }}>
                   {step.description}
                 </p>
               </div>
@@ -59,6 +123,18 @@ export default function Process() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (min-width: 768px) {
+          .process-desktop {
+            display: flex !important;
+            gap: 0;
+          }
+          .process-mobile {
+            display: none !important;
+          }
+        }
+      `}</style>
     </section>
-  );
+  )
 }
