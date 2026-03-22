@@ -4,116 +4,57 @@ export default function Process() {
   return (
     <section
       id="process"
-      style={{
-        backgroundColor: '#ffffff',
-        padding: '6rem 1.5rem',
-      }}
+      className="px-4 py-12 md:px-8 md:py-16 lg:px-16 lg:py-24 bg-white"
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="max-w-[1200px] mx-auto">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.75rem',
-              marginBottom: '1.2rem',
-            }}
-          >
-            <span style={{ display: 'inline-block', width: '32px', height: '1px', backgroundColor: '#E8A824' }} />
-            <span style={{ color: '#E8A824', fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+        <div className="text-center mb-10 md:mb-14">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className="inline-block w-8 h-px bg-[#E8A824]" />
+            <span className="text-[#E8A824] text-xs font-medium tracking-[0.2em] uppercase">
               Our Process
             </span>
-            <span style={{ display: 'inline-block', width: '32px', height: '1px', backgroundColor: '#E8A824' }} />
+            <span className="inline-block w-8 h-px bg-[#E8A824]" />
           </div>
-          <h2
-            className="font-playfair"
-            style={{
-              fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-              fontWeight: 700,
-              color: '#0a0a0a',
-              lineHeight: 1.2,
-              letterSpacing: '-0.02em',
-            }}
-          >
+          <h2 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-[#0a0a0a] leading-tight tracking-tight">
             How We Work
           </h2>
         </div>
 
-        {/* Steps */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '2rem',
-            position: 'relative',
-          }}
-        >
-          {/* Connecting line (decorative) */}
+        {/* Steps — vertical on mobile, horizontal on lg */}
+        <div className="relative flex flex-col gap-8 lg:flex-row lg:gap-0">
+          {/* Connecting line — only visible lg+ */}
           <div
-            style={{
-              position: 'absolute',
-              top: '28px',
-              left: '10%',
-              right: '10%',
-              height: '1px',
-              backgroundColor: 'rgba(232,168,36,0.2)',
-              display: 'none', // hidden on mobile, shown on wider screens via className
-            }}
-            className="md:block"
+            className="hidden lg:block absolute top-7 left-[10%] right-[10%] h-px"
+            style={{ backgroundColor: 'rgba(232,168,36,0.2)' }}
           />
 
           {processSteps.map((step, index) => (
             <div
               key={step.step}
-              style={{
-                textAlign: 'center',
-                position: 'relative',
-              }}
+              className="flex gap-4 relative lg:flex-col lg:items-center lg:flex-1 lg:gap-0"
             >
               {/* Step number circle */}
               <div
+                className="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold relative z-10 lg:mb-6 lg:mx-auto"
                 style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '50%',
                   border: '1.5px solid #E8A824',
                   backgroundColor: index % 2 === 0 ? '#E8A824' : '#ffffff',
                   color: index % 2 === 0 ? '#0a0a0a' : '#E8A824',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '0 auto 1.5rem',
-                  fontSize: '1.1rem',
-                  fontWeight: 700,
-                  position: 'relative',
-                  zIndex: 1,
                 }}
               >
                 {step.step}
               </div>
 
-              <h3
-                style={{
-                  fontSize: '1.05rem',
-                  fontWeight: 600,
-                  color: '#0a0a0a',
-                  marginBottom: '0.75rem',
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                {step.title}
-              </h3>
-              <p
-                style={{
-                  color: '#6B6B6B',
-                  fontSize: '0.875rem',
-                  lineHeight: 1.7,
-                }}
-              >
-                {step.description}
-              </p>
+              {/* Content */}
+              <div className="lg:text-center">
+                <h3 className="text-base md:text-lg font-semibold text-[#0a0a0a] mb-2 tracking-tight">
+                  {step.title}
+                </h3>
+                <p className="text-sm md:text-base leading-relaxed" style={{ color: '#6B6B6B' }}>
+                  {step.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

@@ -6,116 +6,48 @@ export default function Gallery() {
   return (
     <section
       id="gallery"
-      style={{
-        backgroundColor: '#F5F5F0',
-        padding: '6rem 1.5rem',
-      }}
+      className="px-4 py-12 md:px-8 md:py-16 lg:px-16 lg:py-24"
+      style={{ backgroundColor: '#F5F5F0' }}
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="max-w-[1200px] mx-auto">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.75rem',
-              marginBottom: '1.2rem',
-            }}
-          >
-            <span style={{ display: 'inline-block', width: '32px', height: '1px', backgroundColor: '#E8A824' }} />
-            <span style={{ color: '#E8A824', fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+        <div className="text-center mb-10 md:mb-14">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className="inline-block w-8 h-px bg-[#E8A824]" />
+            <span className="text-[#E8A824] text-xs font-medium tracking-[0.2em] uppercase">
               Our Work
             </span>
-            <span style={{ display: 'inline-block', width: '32px', height: '1px', backgroundColor: '#E8A824' }} />
+            <span className="inline-block w-8 h-px bg-[#E8A824]" />
           </div>
-          <h2
-            className="font-playfair"
-            style={{
-              fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-              fontWeight: 700,
-              color: '#0a0a0a',
-              lineHeight: 1.2,
-              letterSpacing: '-0.02em',
-            }}
-          >
+          <h2 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-[#0a0a0a] leading-tight tracking-tight">
             Our Recent Work
           </h2>
         </div>
 
-        {/* Gallery Grid */}
-        {/* TODO: Replace with real project photos */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '1rem',
-          }}
-        >
+        {/* Gallery grid — 1 col mobile, 2 col md, 3 col lg */}
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-3">
           {galleryItems.map((item, index) => (
             <div
               key={item.label}
+              className="relative rounded-[10px] overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)]"
               style={{
-                position: 'relative',
                 aspectRatio: index === 0 || index === 3 ? '16/10' : '4/3',
-                borderRadius: '10px',
-                overflow: 'hidden',
-                background: `linear-gradient(135deg, #404040 0%, #1a1a1a 100%)`,
-                cursor: 'pointer',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.transform = 'scale(1.02)';
-                el.style.boxShadow = '0 16px 40px rgba(0,0,0,0.2)';
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.transform = 'none';
-                el.style.boxShadow = 'none';
+                background: 'linear-gradient(135deg, #404040 0%, #1a1a1a 100%)',
               }}
             >
               {/* Gradient overlay */}
               <div
+                className="absolute inset-0 flex flex-col items-center justify-center gap-2"
                 style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(135deg, rgba(50,50,50,0.9) 0%, rgba(20,20,20,0.95) 100%)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.5rem',
+                  background:
+                    'linear-gradient(135deg, rgba(50,50,50,0.9) 0%, rgba(20,20,20,0.95) 100%)',
                 }}
               >
-                {/* Gold diamond icon */}
-                <div
-                  style={{
-                    width: '2px',
-                    height: '40px',
-                    backgroundColor: '#E8A824',
-                    opacity: 0.5,
-                  }}
-                />
-                <span
-                  style={{
-                    color: '#E8A824',
-                    fontSize: '0.7rem',
-                    letterSpacing: '0.25em',
-                    textTransform: 'uppercase',
-                    fontWeight: 500,
-                  }}
-                >
+                <div className="w-px h-10 bg-[#E8A824] opacity-50" />
+                <span className="text-[#E8A824] text-[0.7rem] tracking-[0.25em] uppercase font-medium">
                   {item.label}
                 </span>
-                <span
-                  style={{
-                    color: 'rgba(255,255,255,0.3)',
-                    fontSize: '0.65rem',
-                    letterSpacing: '0.1em',
-                  }}
-                >
-                  {/* TODO: Replace with real project photos */}
+                <span className="text-xs tracking-[0.1em]" style={{ color: 'rgba(255,255,255,0.3)' }}>
                   Project Photo
                 </span>
               </div>
@@ -123,14 +55,7 @@ export default function Gallery() {
           ))}
         </div>
 
-        <p
-          style={{
-            textAlign: 'center',
-            color: '#6B6B6B',
-            fontSize: '0.85rem',
-            marginTop: '2rem',
-          }}
-        >
+        <p className="text-center text-sm mt-6" style={{ color: '#6B6B6B' }}>
           More photos available on request. Contact us to discuss your project.
         </p>
       </div>

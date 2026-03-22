@@ -6,82 +6,39 @@ export default function Areas() {
   return (
     <section
       id="areas"
-      style={{
-        backgroundColor: '#ffffff',
-        padding: '6rem 1.5rem',
-      }}
+      className="px-4 py-12 md:px-8 md:py-16 lg:px-16 lg:py-24 bg-white"
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+      <div className="max-w-[1200px] mx-auto text-center">
         {/* Header */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.75rem',
-            marginBottom: '1.2rem',
-          }}
-        >
-          <span style={{ display: 'inline-block', width: '32px', height: '1px', backgroundColor: '#E8A824' }} />
-          <span style={{ color: '#E8A824', fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <span className="inline-block w-8 h-px bg-[#E8A824]" />
+          <span className="text-[#E8A824] text-xs font-medium tracking-[0.2em] uppercase">
             Service Areas
           </span>
-          <span style={{ display: 'inline-block', width: '32px', height: '1px', backgroundColor: '#E8A824' }} />
+          <span className="inline-block w-8 h-px bg-[#E8A824]" />
         </div>
 
-        <h2
-          className="font-playfair"
-          style={{
-            fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-            fontWeight: 700,
-            color: '#0a0a0a',
-            lineHeight: 1.2,
-            letterSpacing: '-0.02em',
-            marginBottom: '1rem',
-          }}
-        >
+        <h2 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-[#0a0a0a] leading-tight tracking-tight mb-3">
           We Cover All of Greater Sydney
         </h2>
-        <p
-          style={{
-            color: '#6B6B6B',
-            fontSize: '1rem',
-            marginBottom: '3rem',
-          }}
-        >
+        <p className="text-sm md:text-base mb-8 md:mb-12" style={{ color: '#6B6B6B' }}>
           From the Eastern Suburbs to the Blue Mountains — we come to you.
         </p>
 
-        {/* Areas grid */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '0.75rem',
-            justifyContent: 'center',
-          }}
-        >
+        {/* Areas badges — flex-wrap, smaller on mobile */}
+        <div className="flex flex-wrap gap-2 md:gap-3 justify-center">
           {areas.map((area) => (
             <AreaBadge key={area} area={area} />
           ))}
         </div>
 
         {/* Disclaimer */}
-        <p
-          style={{
-            color: '#6B6B6B',
-            fontSize: '0.85rem',
-            marginTop: '2.5rem',
-          }}
-        >
+        <p className="text-xs md:text-sm mt-8" style={{ color: '#6B6B6B' }}>
           Not sure if we service your area?{' '}
           <a
             href="#contact"
-            style={{
-              color: '#E8A824',
-              textDecoration: 'underline',
-              fontWeight: 500,
-            }}
+            className="hover:opacity-80 transition-opacity font-medium underline"
+            style={{ color: '#E8A824' }}
           >
             Contact us
           </a>{' '}
@@ -95,17 +52,11 @@ export default function Areas() {
 function AreaBadge({ area }: { area: string }) {
   return (
     <span
+      className="inline-block px-3 py-1.5 text-sm rounded-full font-medium cursor-default transition-all duration-200 md:px-4 md:py-2 md:text-base"
       style={{
-        display: 'inline-block',
-        padding: '0.55rem 1.1rem',
         backgroundColor: '#F5F5F0',
         color: '#374151',
-        borderRadius: '100px',
-        fontSize: '0.875rem',
-        fontWeight: 500,
         border: '1px solid rgba(0,0,0,0.06)',
-        cursor: 'default',
-        transition: 'background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease',
       }}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLElement;

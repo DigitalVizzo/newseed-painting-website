@@ -53,53 +53,30 @@ export default function Services() {
   return (
     <section
       id="services"
-      style={{
-        backgroundColor: '#F5F5F0',
-        padding: '6rem 1.5rem',
-      }}
+      className="px-4 py-12 md:px-8 md:py-16 lg:px-16 lg:py-24"
+      style={{ backgroundColor: '#F5F5F0' }}
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="max-w-[1200px] mx-auto">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.75rem',
-              marginBottom: '1.2rem',
-            }}
-          >
-            <span style={{ display: 'inline-block', width: '32px', height: '1px', backgroundColor: '#E8A824' }} />
-            <span style={{ color: '#E8A824', fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+        <div className="text-center mb-10 md:mb-14">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className="inline-block w-8 h-px bg-[#E8A824]" />
+            <span className="text-[#E8A824] text-xs font-medium tracking-[0.2em] uppercase">
               Our Services
             </span>
-            <span style={{ display: 'inline-block', width: '32px', height: '1px', backgroundColor: '#E8A824' }} />
+            <span className="inline-block w-8 h-px bg-[#E8A824]" />
           </div>
           <h2
-            className="font-playfair"
-            style={{
-              fontSize: 'clamp(2rem, 4vw, 2.8rem)',
-              fontWeight: 700,
-              color: '#0a0a0a',
-              lineHeight: 1.2,
-              letterSpacing: '-0.02em',
-            }}
+            className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-[#0a0a0a] leading-tight tracking-tight"
           >
             What We Do Best
           </h2>
         </div>
 
-        {/* Grid */}
+        {/* Grid — 1 col mobile, 2 col md, 3 col lg */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '1.5px',
-            backgroundColor: 'rgba(0,0,0,0.06)',
-            borderRadius: '8px',
-            overflow: 'hidden',
-          }}
+          className="grid grid-cols-1 gap-px md:grid-cols-2 lg:grid-cols-3 rounded-lg overflow-hidden"
+          style={{ backgroundColor: 'rgba(0,0,0,0.06)' }}
         >
           {services.map((service) => (
             <ServiceCard key={service.id} service={service} />
@@ -113,15 +90,7 @@ export default function Services() {
 function ServiceCard({ service }: { service: typeof services[0] }) {
   return (
     <div
-      className="service-card"
-      style={{
-        backgroundColor: '#ffffff',
-        padding: '2.5rem',
-        cursor: 'default',
-        position: 'relative',
-        overflow: 'hidden',
-        transition: 'background-color 0.3s ease',
-      }}
+      className="service-card bg-white p-6 md:p-10 cursor-default relative overflow-hidden transition-colors duration-300 group"
       onMouseEnter={(e) => {
         const card = e.currentTarget as HTMLElement;
         card.style.backgroundColor = '#0a0a0a';
@@ -153,19 +122,11 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
     >
       {/* Icon */}
       <div
-        className="card-icon"
+        className="card-icon w-14 h-14 rounded-[10px] flex items-center justify-center mb-5 transition-all duration-300"
         style={{
-          width: '56px',
-          height: '56px',
-          borderRadius: '10px',
           border: '1px solid rgba(232,168,36,0.2)',
           backgroundColor: 'rgba(232,168,36,0.04)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: '1.5rem',
           color: '#E8A824',
-          transition: 'border-color 0.3s ease, background-color 0.3s ease',
         }}
       >
         {ServiceIcons[service.icon]}
@@ -173,45 +134,22 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
 
       {/* Title */}
       <h3
-        className="card-title"
-        style={{
-          fontSize: '1.15rem',
-          fontWeight: 600,
-          color: '#0a0a0a',
-          marginBottom: '0.75rem',
-          letterSpacing: '-0.01em',
-          transition: 'color 0.3s ease',
-        }}
+        className="card-title text-lg md:text-xl font-semibold text-[#0a0a0a] mb-3 tracking-tight transition-colors duration-300"
       >
         {service.title}
       </h3>
 
       {/* Description */}
       <p
-        className="card-desc"
-        style={{
-          color: '#6B6B6B',
-          fontSize: '0.9rem',
-          lineHeight: 1.7,
-          transition: 'color 0.3s ease',
-        }}
+        className="card-desc text-sm md:text-base leading-relaxed transition-colors duration-300"
+        style={{ color: '#6B6B6B' }}
       >
         {service.description}
       </p>
 
       {/* Gold accent line on hover */}
       <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '2px',
-          backgroundColor: '#E8A824',
-          transform: 'scaleX(0)',
-          transformOrigin: 'left',
-          transition: 'transform 0.3s ease',
-        }}
+        className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#E8A824] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"
       />
     </div>
   );

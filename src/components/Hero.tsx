@@ -4,89 +4,35 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      className="min-h-screen flex flex-col justify-center relative overflow-hidden"
       style={{
-        minHeight: '100vh',
         background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-        overflow: 'hidden',
         paddingTop: '72px',
       }}
     >
       {/* Subtle texture overlay */}
       <div
+        className="absolute inset-0 pointer-events-none"
         style={{
-          position: 'absolute',
-          inset: 0,
           backgroundImage:
             'radial-gradient(circle at 20% 50%, rgba(232,168,36,0.04) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(232,168,36,0.03) 0%, transparent 40%)',
-          pointerEvents: 'none',
         }}
       />
 
-      <div
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '4rem 1.5rem',
-          textAlign: 'center',
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
-        {/* Tagline chip */}
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            marginBottom: '2rem',
-          }}
-        >
-          <span
-            style={{
-              display: 'inline-block',
-              width: '24px',
-              height: '1px',
-              backgroundColor: '#E8A824',
-            }}
-          />
-          <span
-            style={{
-              color: '#E8A824',
-              fontSize: '0.8rem',
-              fontWeight: 500,
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-            }}
-          >
+      <div className="max-w-[1200px] mx-auto w-full px-4 py-12 md:px-8 md:py-16 lg:px-6 lg:py-20 relative z-10">
+
+        {/* Tagline chip — centered on mobile, left on lg */}
+        <div className="flex items-center justify-center lg:justify-start gap-2 mb-6">
+          <span className="inline-block w-6 h-px bg-[#E8A824]" />
+          <span className="text-[#E8A824] text-xs font-medium tracking-[0.2em] uppercase">
             Sydney&apos;s Premium Painters
           </span>
-          <span
-            style={{
-              display: 'inline-block',
-              width: '24px',
-              height: '1px',
-              backgroundColor: '#E8A824',
-            }}
-          />
+          <span className="inline-block w-6 h-px bg-[#E8A824]" />
         </div>
 
         {/* Main headline */}
         <h1
-          className="font-playfair"
-          style={{
-            fontSize: 'clamp(2.4rem, 6vw, 5rem)',
-            fontWeight: 700,
-            color: '#ffffff',
-            lineHeight: 1.15,
-            letterSpacing: '-0.02em',
-            marginBottom: '1.5rem',
-            maxWidth: '900px',
-            margin: '0 auto 1.5rem',
-          }}
+          className="font-playfair text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight text-center lg:text-left mb-5 max-w-[900px] mx-auto lg:mx-0"
         >
           Planting the Seed of{' '}
           <span style={{ color: '#E8A824' }}>Transformation</span>{' '}
@@ -94,71 +40,26 @@ export default function Hero() {
         </h1>
 
         {/* Sub-headline */}
-        <p
-          style={{
-            color: 'rgba(255,255,255,0.65)',
-            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-            lineHeight: 1.7,
-            maxWidth: '580px',
-            margin: '0 auto 3rem',
-          }}
-        >
+        <p className="text-white/65 text-sm md:text-base lg:text-lg leading-relaxed max-w-[580px] text-center lg:text-left mx-auto lg:mx-0 mb-8">
           Expert painting solutions for residential and commercial properties
           across Greater Sydney
         </p>
 
-        {/* CTAs */}
-        <div
-          style={{
-            display: 'flex',
-            gap: '1rem',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            marginBottom: '4rem',
-          }}
-        >
+        {/* CTAs — column on mobile, row on md+ */}
+        <div className="flex flex-col gap-3 items-center md:flex-row md:justify-center lg:justify-start mb-10">
           <a
             href="#contact"
-            style={{
-              textDecoration: 'none',
-              backgroundColor: '#E8A824',
-              color: '#0a0a0a',
-              fontWeight: 600,
-              fontSize: '0.95rem',
-              padding: '0.9rem 2rem',
-              borderRadius: '4px',
-              letterSpacing: '0.02em',
-              transition: 'background-color 0.2s ease, transform 0.2s ease',
-              display: 'inline-block',
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.backgroundColor = '#CC8C1A';
-              el.style.transform = 'translateY(-1px)';
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.backgroundColor = '#E8A824';
-              el.style.transform = 'none';
-            }}
+            className="w-full max-w-xs md:w-auto no-underline inline-flex items-center justify-center text-[#0a0a0a] font-semibold text-[0.95rem] py-[0.9rem] px-8 rounded tracking-wide transition-all duration-200 hover:-translate-y-px"
+            style={{ backgroundColor: '#E8A824' }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = '#CC8C1A')}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = '#E8A824')}
           >
             Get a Free Quote
           </a>
           <a
             href="#gallery"
-            style={{
-              textDecoration: 'none',
-              border: '1px solid rgba(255,255,255,0.3)',
-              color: '#ffffff',
-              fontWeight: 500,
-              fontSize: '0.95rem',
-              padding: '0.9rem 2rem',
-              borderRadius: '4px',
-              letterSpacing: '0.02em',
-              transition: 'border-color 0.2s ease, background-color 0.2s ease',
-              display: 'inline-block',
-              backgroundColor: 'transparent',
-            }}
+            className="w-full max-w-xs md:w-auto no-underline inline-flex items-center justify-center text-white font-medium text-[0.95rem] py-[0.9rem] px-8 rounded tracking-wide transition-all duration-200"
+            style={{ border: '1px solid rgba(255,255,255,0.3)', backgroundColor: 'transparent' }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement;
               el.style.borderColor = 'rgba(255,255,255,0.7)';
@@ -174,42 +75,21 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Stats */}
+        {/* Stats — column on mobile, row on md+ */}
         <div
-          style={{
-            display: 'flex',
-            gap: '2rem',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            padding: '1.5rem 2rem',
-            borderTop: '1px solid rgba(255,255,255,0.08)',
-          }}
+          className="flex flex-col gap-4 items-center md:flex-row md:gap-8 md:justify-center lg:justify-start pt-6"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
         >
           {[
             { value: '500+', label: 'Projects Completed' },
             { value: '10+', label: 'Years Experience' },
             { value: '5★', label: 'Google Rating' },
           ].map((stat) => (
-            <div key={stat.label} style={{ textAlign: 'center' }}>
-              <div
-                style={{
-                  color: '#E8A824',
-                  fontSize: '1.6rem',
-                  fontWeight: 700,
-                  letterSpacing: '-0.02em',
-                }}
-              >
+            <div key={stat.label} className="text-center">
+              <div className="text-[#E8A824] text-[1.6rem] font-bold tracking-tight">
                 {stat.value}
               </div>
-              <div
-                style={{
-                  color: 'rgba(255,255,255,0.5)',
-                  fontSize: '0.8rem',
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                  marginTop: '0.2rem',
-                }}
-              >
+              <div className="text-white/50 text-xs tracking-[0.06em] uppercase mt-1">
                 {stat.label}
               </div>
             </div>

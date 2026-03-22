@@ -15,40 +15,25 @@ const quickLinks = [
 export default function Footer() {
   return (
     <footer
-      style={{
-        backgroundColor: '#000000',
-        color: 'rgba(255,255,255,0.65)',
-        padding: '4rem 1.5rem 2rem',
-      }}
+      className="px-4 pt-10 pb-6 md:px-8 md:pt-14 lg:px-16"
+      style={{ backgroundColor: '#000000', color: 'rgba(255,255,255,0.65)' }}
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        {/* Top grid */}
+      <div className="max-w-[1200px] mx-auto">
+        {/* Top grid — 1 col mobile, 2 col md, 4 col lg */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '3rem',
-            marginBottom: '3rem',
-            paddingBottom: '3rem',
-            borderBottom: '1px solid rgba(255,255,255,0.08)',
-          }}
+          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 mb-10 pb-10"
+          style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
         >
           {/* Brand column */}
-          <div>
-            <div style={{ marginBottom: '1.2rem' }}>
+          <div className="md:col-span-2 lg:col-span-1">
+            <div className="mb-4">
               <Logo variant="dark" size={44} />
             </div>
-            <p style={{ fontSize: '0.875rem', lineHeight: 1.7, maxWidth: '240px' }}>
+            <p className="text-sm leading-relaxed max-w-[240px]" style={{ lineHeight: 1.7 }}>
               Sydney&apos;s trusted painting professionals. Licensed, insured, and
               committed to exceptional results.
             </p>
-            <p
-              style={{
-                fontSize: '0.78rem',
-                marginTop: '1rem',
-                color: 'rgba(255,255,255,0.35)',
-              }}
-            >
+            <p className="text-xs mt-3" style={{ color: 'rgba(255,255,255,0.35)' }}>
               Painters License: {contact.license}
             </p>
           </div>
@@ -56,28 +41,17 @@ export default function Footer() {
           {/* Quick links */}
           <div>
             <h4
-              style={{
-                color: '#ffffff',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                marginBottom: '1.2rem',
-              }}
+              className="text-white text-xs font-semibold tracking-[0.15em] uppercase mb-4"
             >
               Quick Links
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <ul className="flex flex-col gap-2.5">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    style={{
-                      textDecoration: 'none',
-                      color: 'rgba(255,255,255,0.55)',
-                      fontSize: '0.875rem',
-                      transition: 'color 0.2s ease',
-                    }}
+                    className="no-underline text-sm transition-colors duration-200 hover:text-[#E8A824]"
+                    style={{ color: 'rgba(255,255,255,0.55)' }}
                     onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#E8A824')}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)')}
                   >
@@ -91,28 +65,17 @@ export default function Footer() {
           {/* Services column */}
           <div>
             <h4
-              style={{
-                color: '#ffffff',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                marginBottom: '1.2rem',
-              }}
+              className="text-white text-xs font-semibold tracking-[0.15em] uppercase mb-4"
             >
               Services
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <ul className="flex flex-col gap-2.5">
               {services.map((service) => (
                 <li key={service.id}>
                   <a
                     href="#services"
-                    style={{
-                      textDecoration: 'none',
-                      color: 'rgba(255,255,255,0.55)',
-                      fontSize: '0.875rem',
-                      transition: 'color 0.2s ease',
-                    }}
+                    className="no-underline text-sm transition-colors duration-200"
+                    style={{ color: 'rgba(255,255,255,0.55)' }}
                     onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#E8A824')}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)')}
                   >
@@ -126,29 +89,15 @@ export default function Footer() {
           {/* Contact column */}
           <div>
             <h4
-              style={{
-                color: '#ffffff',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                marginBottom: '1.2rem',
-              }}
+              className="text-white text-xs font-semibold tracking-[0.15em] uppercase mb-4"
             >
               Contact
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+            <div className="flex flex-col gap-3">
               <a
                 href={contact.phoneHref}
-                style={{
-                  textDecoration: 'none',
-                  color: 'rgba(255,255,255,0.55)',
-                  fontSize: '0.875rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  transition: 'color 0.2s ease',
-                }}
+                className="no-underline text-sm flex items-center gap-2 transition-colors duration-200"
+                style={{ color: 'rgba(255,255,255,0.55)' }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#E8A824')}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)')}
               >
@@ -156,28 +105,16 @@ export default function Footer() {
               </a>
               <a
                 href={contact.emailHref}
-                style={{
-                  textDecoration: 'none',
-                  color: 'rgba(255,255,255,0.55)',
-                  fontSize: '0.875rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  transition: 'color 0.2s ease',
-                }}
+                className="no-underline text-sm flex items-center gap-2 transition-colors duration-200"
+                style={{ color: 'rgba(255,255,255,0.55)' }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#E8A824')}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)')}
               >
                 <span>✉️</span> {contact.email}
               </a>
               <div
-                style={{
-                  color: 'rgba(255,255,255,0.55)',
-                  fontSize: '0.875rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                }}
+                className="text-sm flex items-center gap-2"
+                style={{ color: 'rgba(255,255,255,0.55)' }}
               >
                 <span>📍</span> {contact.address}
               </div>
@@ -185,30 +122,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '0.5rem',
-          }}
-        >
-          <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)' }}>
+        {/* Bottom bar — stacked on mobile, row on md+ */}
+        <div className="flex flex-col gap-3 items-center md:flex-row md:justify-between">
+          <p className="text-xs text-center md:text-left" style={{ color: 'rgba(255,255,255,0.3)' }}>
             © 2026 New Seed Painting Group. All Rights Reserved. | Sydney, NSW, Australia
           </p>
-          <div
-            style={{
-              display: 'flex',
-              gap: '0.3rem',
-              alignItems: 'center',
-            }}
-          >
+          <div className="flex gap-1 items-center">
             {[1, 2, 3, 4, 5].map((s) => (
-              <span key={s} style={{ color: '#E8A824', fontSize: '0.75rem' }}>★</span>
+              <span key={s} className="text-[#E8A824] text-xs">★</span>
             ))}
-            <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.75rem', marginLeft: '0.3rem' }}>
+            <span className="text-xs ml-1" style={{ color: 'rgba(255,255,255,0.3)' }}>
               5.0 Google Rating
             </span>
           </div>

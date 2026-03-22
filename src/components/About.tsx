@@ -37,74 +37,31 @@ export default function About() {
   return (
     <section
       id="about"
-      style={{
-        backgroundColor: '#ffffff',
-        padding: '6rem 1.5rem',
-      }}
+      className="px-4 py-12 md:px-8 md:py-16 lg:px-16 lg:py-24 bg-white"
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="max-w-[1200px] mx-auto">
         {/* Section label */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.75rem',
-            marginBottom: '1.5rem',
-          }}
-        >
-          <span
-            style={{
-              display: 'inline-block',
-              width: '32px',
-              height: '1px',
-              backgroundColor: '#E8A824',
-            }}
-          />
-          <span
-            style={{
-              color: '#E8A824',
-              fontSize: '0.75rem',
-              fontWeight: 500,
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-            }}
-          >
+        <div className="flex items-center gap-3 mb-6">
+          <span className="inline-block w-8 h-px bg-[#E8A824]" />
+          <span className="text-[#E8A824] text-xs font-medium tracking-[0.2em] uppercase">
             About Us
           </span>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '4rem',
-            alignItems: 'start',
-          }}
-        >
+        {/* Main grid — 1 col mobile, 2 col md+ */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16 items-start">
           {/* Text block */}
           <div>
             <h2
-              className="font-playfair"
-              style={{
-                fontSize: 'clamp(2rem, 4vw, 3rem)',
-                fontWeight: 700,
-                color: '#0a0a0a',
-                lineHeight: 1.2,
-                letterSpacing: '-0.02em',
-                marginBottom: '1.5rem',
-              }}
+              className="font-playfair text-2xl md:text-3xl lg:text-4xl font-bold text-[#0a0a0a] leading-tight tracking-tight mb-5"
             >
               Sydney&apos;s Trusted{' '}
               <span style={{ color: '#E8A824' }}>Painting</span>{' '}
               Professionals
             </h2>
             <p
-              style={{
-                color: '#6B6B6B',
-                fontSize: '1.05rem',
-                lineHeight: 1.8,
-                marginBottom: '1.5rem',
-              }}
+              className="text-sm md:text-base leading-relaxed mb-5"
+              style={{ color: '#6B6B6B', lineHeight: 1.8 }}
             >
               New Seed Painting Group is a hardworking team of experienced and
               devoted painters operating across the entire Sydney area. We take
@@ -113,60 +70,38 @@ export default function About() {
             </p>
             <a
               href="#contact"
+              className="inline-block no-underline text-sm md:text-base font-semibold tracking-wide transition-all duration-200 hover:opacity-80"
               style={{
-                display: 'inline-block',
-                textDecoration: 'none',
                 color: '#E8A824',
-                fontWeight: 600,
-                fontSize: '0.9rem',
-                letterSpacing: '0.05em',
                 borderBottom: '1px solid #E8A824',
                 paddingBottom: '2px',
-                transition: 'color 0.2s, border-color 0.2s',
               }}
             >
               Request a Free Quote →
             </a>
           </div>
 
-          {/* Pillars */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {/* Pillars — 1 col mobile, same col md (already in 2-col grid) */}
+          <div className="flex flex-col gap-6 md:gap-8">
             {pillars.map((pillar) => (
               <div
                 key={pillar.title}
-                style={{
-                  display: 'flex',
-                  gap: '1.2rem',
-                  alignItems: 'flex-start',
-                }}
+                className="flex gap-4 items-start"
               >
                 <div
+                  className="flex-shrink-0 w-[52px] h-[52px] rounded-lg flex items-center justify-center"
                   style={{
-                    flexShrink: 0,
-                    width: '52px',
-                    height: '52px',
-                    borderRadius: '8px',
                     border: '1px solid rgba(232,168,36,0.2)',
                     backgroundColor: 'rgba(232,168,36,0.04)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
                   }}
                 >
                   {pillar.icon}
                 </div>
                 <div>
-                  <h3
-                    style={{
-                      fontSize: '1rem',
-                      fontWeight: 600,
-                      color: '#0a0a0a',
-                      marginBottom: '0.3rem',
-                    }}
-                  >
+                  <h3 className="text-sm md:text-base font-semibold text-[#0a0a0a] mb-1">
                     {pillar.title}
                   </h3>
-                  <p style={{ color: '#6B6B6B', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                  <p className="text-sm leading-relaxed" style={{ color: '#6B6B6B' }}>
                     {pillar.description}
                   </p>
                 </div>

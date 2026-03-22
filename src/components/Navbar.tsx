@@ -24,161 +24,69 @@ export default function Navbar() {
 
   return (
     <nav
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-        backgroundColor: '#ffffff',
-        borderBottom: scrolled ? '1px solid rgba(0,0,0,0.08)' : '1px solid transparent',
-        boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.06)' : 'none',
-        transition: 'all 0.3s ease',
-      }}
+      className={`fixed top-0 left-0 right-0 z-[1000] bg-white transition-all duration-300 ${
+        scrolled
+          ? 'border-b border-black/[0.08] shadow-[0_2px_20px_rgba(0,0,0,0.06)]'
+          : 'border-b border-transparent'
+      }`}
     >
-      <div
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 1.5rem',
-          height: '72px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
+      {/* Main bar */}
+      <div className="max-w-[1200px] mx-auto px-4 md:px-8 lg:px-6 h-[72px] flex items-center justify-between">
         {/* Logo */}
-        <a href="#" style={{ textDecoration: 'none' }}>
+        <a href="#" className="no-underline flex-shrink-0">
           <Logo variant="light" size={40} />
         </a>
 
-        {/* Desktop nav */}
-        <div
-          className="hidden md:flex"
-          style={{ alignItems: 'center', gap: '2rem' }}
-        >
+        {/* Desktop nav — hidden on mobile */}
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              style={{
-                textDecoration: 'none',
-                color: '#0a0a0a',
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                opacity: 0.8,
-                transition: 'opacity 0.2s ease, color 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                (e.target as HTMLElement).style.opacity = '1';
-                (e.target as HTMLElement).style.color = '#E8A824';
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLElement).style.opacity = '0.8';
-                (e.target as HTMLElement).style.color = '#0a0a0a';
-              }}
+              className="no-underline text-[#0a0a0a] text-sm font-medium tracking-wide opacity-80 hover:opacity-100 hover:text-[#E8A824] transition-all duration-200"
             >
               {link.label}
             </a>
           ))}
           <a
             href="#contact"
-            style={{
-              textDecoration: 'none',
-              backgroundColor: '#E8A824',
-              color: '#0a0a0a',
-              fontSize: '0.875rem',
-              fontWeight: 600,
-              padding: '0.6rem 1.4rem',
-              borderRadius: '4px',
-              letterSpacing: '0.02em',
-              transition: 'background-color 0.2s ease, transform 0.2s ease',
-            }}
-            onMouseEnter={(e) => {
-              (e.target as HTMLElement).style.backgroundColor = '#CC8C1A';
-            }}
-            onMouseLeave={(e) => {
-              (e.target as HTMLElement).style.backgroundColor = '#E8A824';
-            }}
+            className="no-underline bg-[#E8A824] hover:bg-[#CC8C1A] text-[#0a0a0a] text-sm font-semibold px-5 py-2.5 rounded tracking-wide transition-colors duration-200"
           >
             Get a Free Quote
           </a>
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger — min 44×44 touch target */}
         <button
-          className="md:hidden"
+          className="md:hidden min-h-[44px] min-w-[44px] flex flex-col items-center justify-center gap-[5px] bg-transparent border-none cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: '0.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '5px',
-          }}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
           <span
-            style={{
-              display: 'block',
-              width: '22px',
-              height: '2px',
-              backgroundColor: '#0a0a0a',
-              transition: 'transform 0.3s ease, opacity 0.3s ease',
-              transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none',
-            }}
+            className="block w-[22px] h-[2px] bg-[#0a0a0a] transition-transform duration-300 origin-center"
+            style={{ transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none' }}
           />
           <span
-            style={{
-              display: 'block',
-              width: '22px',
-              height: '2px',
-              backgroundColor: '#0a0a0a',
-              transition: 'opacity 0.3s ease',
-              opacity: menuOpen ? 0 : 1,
-            }}
+            className="block w-[22px] h-[2px] bg-[#0a0a0a] transition-opacity duration-300"
+            style={{ opacity: menuOpen ? 0 : 1 }}
           />
           <span
-            style={{
-              display: 'block',
-              width: '22px',
-              height: '2px',
-              backgroundColor: '#0a0a0a',
-              transition: 'transform 0.3s ease',
-              transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none',
-            }}
+            className="block w-[22px] h-[2px] bg-[#0a0a0a] transition-transform duration-300 origin-center"
+            style={{ transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none' }}
           />
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile dropdown menu */}
       {menuOpen && (
-        <div
-          className="md:hidden"
-          style={{
-            backgroundColor: '#ffffff',
-            borderTop: '1px solid rgba(0,0,0,0.08)',
-            padding: '1.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1.2rem',
-          }}
-        >
+        <div className="md:hidden bg-white border-t border-black/[0.08] px-4 pb-4 flex flex-col">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              style={{
-                textDecoration: 'none',
-                color: '#0a0a0a',
-                fontSize: '1rem',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-              }}
+              className="no-underline text-[#0a0a0a] text-base font-medium tracking-wide min-h-[44px] flex items-center border-b border-black/5 last:border-0 hover:text-[#E8A824] transition-colors duration-200"
             >
               {link.label}
             </a>
@@ -186,17 +94,7 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={() => setMenuOpen(false)}
-            style={{
-              textDecoration: 'none',
-              backgroundColor: '#E8A824',
-              color: '#0a0a0a',
-              fontSize: '0.95rem',
-              fontWeight: 600,
-              padding: '0.8rem 1.4rem',
-              borderRadius: '4px',
-              textAlign: 'center',
-              marginTop: '0.5rem',
-            }}
+            className="no-underline bg-[#E8A824] text-[#0a0a0a] text-[0.95rem] font-semibold py-3 px-5 rounded text-center mt-3 min-h-[44px] flex items-center justify-center hover:bg-[#CC8C1A] transition-colors duration-200"
           >
             Get a Free Quote
           </a>
