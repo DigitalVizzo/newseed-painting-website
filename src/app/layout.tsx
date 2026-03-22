@@ -2,15 +2,15 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'New Seed Painting Group | Premium Painters Sydney',
+  title: 'Painters Northern Beaches Sydney | New Seed Painting Group',
   description:
-    "Sydney's trusted painting professionals. Residential, commercial, exterior and interior painting across Greater Sydney. Licensed, insured, 5-star rated. Get a free quote today.",
+    'Premium residential & commercial painters Sydney. New Seed Painting Group serves the Northern Beaches and Greater Sydney — licensed, insured, 5-year guarantee. Free quote.',
   keywords:
-    'painters sydney, residential painting sydney, commercial painters sydney, exterior painting sydney, interior painting sydney, roof painting sydney, strata painting sydney',
+    'painters northern beaches sydney, painters sydney, residential painting sydney, commercial painters sydney, exterior painting sydney, interior painting sydney, roof painting sydney, strata painting sydney, manly painters, dee why painters',
   openGraph: {
-    title: 'New Seed Painting Group | Premium Painters Sydney',
+    title: 'Painters Northern Beaches Sydney | New Seed Painting Group',
     description:
-      "Sydney's trusted painting professionals. 500+ projects completed. Licensed & insured.",
+      "Premium painters serving Sydney's Northern Beaches & Greater Sydney. Licensed, insured, 5-year workmanship guarantee.",
     url: 'https://newseedpainting.com',
     siteName: 'New Seed Painting Group',
     locale: 'en_AU',
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'New Seed Painting Group | Premium Painters Sydney',
+    title: 'Painters Northern Beaches Sydney | New Seed Painting Group',
     description:
-      "Sydney's trusted painting professionals. 500+ projects completed. Licensed & insured.",
+      "Premium painters serving Sydney's Northern Beaches & Greater Sydney. Licensed, insured, 5-year workmanship guarantee.",
   },
   metadataBase: new URL('https://newseedpainting.com'),
 };
@@ -30,21 +30,24 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'PaintingContractor',
   name: 'New Seed Painting Group',
-  description: 'Premium painting services across Greater Sydney',
+  description: "Premium residential and commercial painting services across Sydney's Northern Beaches and Greater Sydney.",
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Sydney',
+    addressLocality: 'Manly Vale',
     addressRegion: 'NSW',
+    postalCode: '2093',
     addressCountry: 'AU',
   },
-  areaServed: 'Greater Sydney',
-  telephone: '+61400000000',
-  url: 'https://newseedpainting.com',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5.0',
-    reviewCount: '47',
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '-33.7969',
+    longitude: '151.2767',
   },
+  areaServed: "Sydney's Northern Beaches and Greater Sydney",
+  telephone: '+61400524541',
+  email: 'info@newseedgroup.com.au',
+  url: 'https://newseedpainting.com',
+  foundingDate: '2024',
   priceRange: '$$',
   openingHours: 'Mo-Sa 07:00-18:00',
 };
