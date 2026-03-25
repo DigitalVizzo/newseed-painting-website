@@ -1,101 +1,97 @@
-import { about } from '@/lib/data'
+'use client'
 
-const pillarIcons = ['🏅', '✨', '🤝']
+import { ShieldCheck, Sparkles, Handshake } from 'lucide-react'
+import { about } from '@/lib/data'
+import AnimateOnScroll from './AnimateOnScroll'
+import LeafWatermark from './LeafWatermark'
+
+const pillarIcons = [ShieldCheck, Sparkles, Handshake]
 
 export default function About() {
   return (
     <section
       id="about"
-      style={{ background: '#0a0a0a', padding: '6rem 0' }}
+      style={{ background: '#F7F5F0', padding: '7rem 0', position: 'relative', overflow: 'hidden' }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-        <div className="about-grid fade-in" style={{ display: 'grid', gap: '4rem', alignItems: 'start' }}>
-          {/* Left: Text */}
-          <div>
+      <LeafWatermark opacity={0.03} size={500} style={{ bottom: -100, right: -100, transform: 'rotate(-30deg)' }} />
+
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem', position: 'relative' }}>
+        <div className="about-grid" style={{ display: 'grid', gap: '5rem', alignItems: 'start' }}>
+          <AnimateOnScroll animation="fadeLeft">
             <p style={{
               color: '#E8A824',
-              fontSize: '0.8rem',
+              fontSize: '0.75rem',
               fontWeight: 600,
-              letterSpacing: '0.15em',
+              letterSpacing: '0.2em',
               textTransform: 'uppercase',
               marginBottom: 16,
             }}>
-              WHO WE ARE
+              ABOUT
             </p>
             <h2
-              className="font-playfair"
+              className="font-serif"
               style={{
-                color: 'white',
-                fontSize: 'clamp(2rem, 4vw, 3rem)',
-                fontWeight: 800,
-                lineHeight: 1.15,
+                color: '#1A1A1A',
+                fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)',
+                fontWeight: 400,
+                lineHeight: 1.1,
                 marginBottom: 28,
               }}
             >
-              Built on Craft.<br />Backed by Purpose.
+              {about.title}
             </h2>
-            <p style={{
-              color: 'rgba(255,255,255,0.55)',
-              fontSize: '1.05rem',
-              lineHeight: 1.8,
-              fontFamily: "'Inter', sans-serif",
-            }}>
+            <p style={{ color: '#666', fontSize: '1rem', lineHeight: 1.8 }}>
               {about.text}
             </p>
-          </div>
+          </AnimateOnScroll>
 
-          {/* Right: Pillars */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {about.pillars.map((pillar, i) => (
-              <div
-                key={i}
-                style={{
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  borderRadius: 16,
-                  padding: '1.5rem',
-                  background: 'rgba(255,255,255,0.03)',
-                  backdropFilter: 'blur(8px)',
-                  WebkitBackdropFilter: 'blur(8px)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'default',
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget
-                  el.style.borderColor = 'rgba(232,168,36,0.3)'
-                  el.style.background = 'rgba(255,255,255,0.05)'
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget
-                  el.style.borderColor = 'rgba(255,255,255,0.1)'
-                  el.style.background = 'rgba(255,255,255,0.03)'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
-                  <span style={{ fontSize: '1.75rem', flexShrink: 0 }}>{pillarIcons[i]}</span>
-                  <div>
-                    <h3 style={{ color: 'white', fontWeight: 600, fontSize: '1rem', marginBottom: 8 }}>
-                      {pillar.title}
-                    </h3>
-                    <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.875rem', lineHeight: 1.6 }}>
-                      {pillar.description}
-                    </p>
+          <AnimateOnScroll animation="fadeRight" delay={0.2}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              {about.pillars.map((pillar, i) => {
+                const Icon = pillarIcons[i]
+                return (
+                  <div
+                    key={i}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 16,
+                      padding: '1.25rem 0',
+                      borderBottom: i < 2 ? '1px solid rgba(0,0,0,0.06)' : 'none',
+                    }}
+                  >
+                    <div style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: 10,
+                      background: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+                    }}>
+                      <Icon size={20} color="#E8A824" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h3 style={{ color: '#1A1A1A', fontWeight: 600, fontSize: '0.95rem', marginBottom: 4 }}>
+                        {pillar.title}
+                      </h3>
+                      <p style={{ color: '#999', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                        {pillar.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                )
+              })}
+            </div>
+          </AnimateOnScroll>
         </div>
       </div>
 
       <style>{`
-        .about-grid {
-          grid-template-columns: 1fr;
-        }
-        @media (min-width: 768px) {
-          .about-grid {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
+        .about-grid { grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
       `}</style>
     </section>
   )

@@ -1,126 +1,123 @@
+'use client'
+
+import { Star, Shield, Award, MapPin } from 'lucide-react'
 import { reviews } from '@/lib/data'
 
 export default function Reviews() {
   return (
     <section
       id="reviews"
-      style={{ background: '#111111', padding: '6rem 0' }}
+      style={{ background: '#F7F5F0', padding: '7rem 0' }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
         {reviews.inviteMode ? (
-          /* Invite Mode */
-          <div className="fade-in" style={{ maxWidth: 680, margin: '0 auto', textAlign: 'center' }}>
+          <div className="" style={{ maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
             {/* Stars */}
-            <div style={{ marginBottom: 24 }}>
-              <span style={{ fontSize: '3rem', color: '#E8A824', letterSpacing: 4 }}>★★★★★</span>
+            <div style={{ marginBottom: 24, display: 'flex', justifyContent: 'center', gap: 4 }}>
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={24} color="#E8A824" fill="#E8A824" />
+              ))}
             </div>
 
-            {/* Title */}
             <h2
-              className="font-playfair"
+              className="font-serif"
               style={{
-                color: 'white',
+                color: '#1A1A1A',
                 fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
-                fontWeight: 700,
-                marginBottom: 20,
+                fontWeight: 400,
+                marginBottom: 16,
                 lineHeight: 1.2,
               }}
             >
               {reviews.inviteTitle}
             </h2>
 
-            {/* Text */}
             <p style={{
-              color: 'rgba(255,255,255,0.55)',
-              fontSize: '1.05rem',
-              lineHeight: 1.75,
-              marginBottom: 16,
+              color: '#666',
+              fontSize: '1rem',
+              lineHeight: 1.7,
+              marginBottom: 40,
             }}>
               {reviews.inviteText}
             </p>
 
-            {/* Note */}
-            <p style={{
-              color: 'rgba(255,255,255,0.35)',
-              fontSize: '0.9rem',
-              lineHeight: 1.6,
-              marginBottom: 36,
-              fontStyle: 'italic',
-            }}>
-              {reviews.inviteNote}
-            </p>
+            {/* Trust badges */}
+            <div className="trust-badges-grid" style={{ display: 'grid', gap: 16, marginBottom: 40 }}>
+              {[
+                { icon: Shield, title: 'NSW Licensed', sub: 'Fully compliant contractor' },
+                { icon: Award, title: 'Insured', sub: 'Public liability coverage' },
+                { icon: MapPin, title: 'Local Team', sub: 'Based in Manly Vale' },
+              ].map((item, i) => {
+                const Icon = item.icon
+                return (
+                  <div key={i} style={{
+                    background: 'white',
+                    borderRadius: 16,
+                    padding: '1.25rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 14,
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                  }}>
+                    <Icon size={22} color="#E8A824" strokeWidth={1.5} />
+                    <div style={{ textAlign: 'left' }}>
+                      <p style={{ color: '#1A1A1A', fontWeight: 600, fontSize: '0.875rem' }}>{item.title}</p>
+                      <p style={{ color: '#999', fontSize: '0.75rem' }}>{item.sub}</p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
 
             {/* CTA */}
             <a
               href="https://maps.google.com/?q=New+Seed+Painting+Group"
               target="_blank"
               rel="noopener noreferrer"
+              className="review-cta-btn"
               style={{
                 display: 'inline-block',
-                background: '#E8A824',
-                color: '#0a0a0a',
-                fontWeight: 700,
-                padding: '1rem 2.5rem',
+                background: '#1A1A1A',
+                color: 'white',
+                fontWeight: 600,
+                padding: '0.875rem 2rem',
                 borderRadius: 9999,
                 textDecoration: 'none',
-                fontSize: '1rem',
-                boxShadow: '0 8px 30px rgba(232,168,36,0.2)',
-                transition: 'background 0.2s ease',
-                marginBottom: 28,
+                fontSize: '0.9rem',
+                transition: 'all 0.3s ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#CC8C1A')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#E8A824')}
             >
               {reviews.inviteCta}
             </a>
-
-            <div>
-              <a
-                href="https://maps.google.com/?q=New+Seed+Painting+Group"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: 'rgba(255,255,255,0.35)',
-                  fontSize: '0.875rem',
-                  textDecoration: 'none',
-                  transition: 'color 0.2s ease',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.7)')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.35)')}
-              >
-                Or read what our first clients are saying →
-              </a>
-            </div>
           </div>
         ) : (
-          /* Review List Mode */
           <div>
-            <div className="fade-in" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-              <p style={{ color: '#E8A824', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>
-                CLIENT STORIES
+            <div className="" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+              <p style={{ color: '#E8A824', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>
+                REVIEWS
               </p>
-              <h2 className="font-playfair" style={{ color: 'white', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800 }}>
+              <h2 className="font-serif" style={{ color: '#1A1A1A', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 400 }}>
                 What Our Clients Say
               </h2>
             </div>
             <div className="fade-in reviews-grid" style={{ display: 'grid', gap: 20 }}>
               {reviews.list.map((review, i) => (
                 <div key={i} style={{
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  background: 'white',
                   borderRadius: 16,
-                  padding: '1.75rem',
-                  background: 'rgba(255,255,255,0.02)',
+                  padding: '2rem',
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
                 }}>
-                  <div style={{ color: '#E8A824', marginBottom: 12, fontSize: '1.1rem', letterSpacing: 2 }}>
-                    {'★'.repeat(review.rating)}
+                  <div style={{ display: 'flex', gap: 2, marginBottom: 12 }}>
+                    {[...Array(review.rating)].map((_, j) => (
+                      <Star key={j} size={14} color="#E8A824" fill="#E8A824" />
+                    ))}
                   </div>
-                  <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: 16, fontStyle: 'italic' }}>
+                  <p style={{ color: '#666', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: 16, fontStyle: 'italic' }}>
                     &ldquo;{review.text}&rdquo;
                   </p>
-                  <div>
-                    <p style={{ color: 'white', fontWeight: 600, fontSize: '0.9rem' }}>{review.name}</p>
-                    <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.8rem' }}>{review.location}</p>
-                  </div>
+                  <p style={{ color: '#1A1A1A', fontWeight: 600, fontSize: '0.875rem' }}>{review.name}</p>
+                  <p style={{ color: '#999', fontSize: '0.8rem' }}>{review.location}</p>
                 </div>
               ))}
             </div>
@@ -129,15 +126,12 @@ export default function Reviews() {
       </div>
 
       <style>{`
-        .reviews-grid {
-          grid-template-columns: 1fr;
-        }
-        @media (min-width: 768px) {
-          .reviews-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (min-width: 1024px) {
-          .reviews-grid { grid-template-columns: repeat(3, 1fr); }
-        }
+        .trust-badges-grid { grid-template-columns: 1fr; }
+        @media (min-width: 640px) { .trust-badges-grid { grid-template-columns: repeat(3, 1fr); } }
+        .reviews-grid { grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
+        .review-cta-btn:hover { background: #E8A824 !important; }
       `}</style>
     </section>
   )

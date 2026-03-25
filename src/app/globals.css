@@ -3,13 +3,14 @@
 @theme {
   --color-gold: #E8A824;
   --color-gold-dark: #CC8C1A;
-  --color-ink: #0a0a0a;
-  --color-ink-light: #1a1a1a;
-  --color-cream: #F5F5F0;
-  --color-gray-text: #6B6B6B;
-
-  --font-playfair: 'Playfair Display', Georgia, serif;
-  --font-inter: 'Inter', system-ui, sans-serif;
+  --color-gold-light: #F5D175;
+  --color-sand: #F7F5F0;
+  --color-sand-dark: #EDE9E0;
+  --color-ink: #1A1A1A;
+  --color-ink-light: #333333;
+  --color-text-secondary: #666666;
+  --color-text-light: #999999;
+  --color-border: #E8E4DC;
 }
 
 * {
@@ -19,51 +20,38 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
-  font-family: var(--font-inter);
-  background: #0a0a0a;
-  color: #ffffff;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  background: #FAFAF8;
+  color: #1A1A1A;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-.font-playfair {
-  font-family: 'Playfair Display', Georgia, serif;
-}
-
-/* Animação de fade-in ao entrar na viewport */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Glow dourado */
-.glow-gold {
-  box-shadow: 0 0 30px rgba(232, 168, 36, 0.3);
-}
-
-/* Grid pattern background */
-.bg-grid {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-/* Pulse animation para badge */
-@keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 168, 36, 0.4); }
-  50% { box-shadow: 0 0 0 8px rgba(232, 168, 36, 0); }
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
 }
 
 /* Smooth transitions */
 a, button {
-  transition-property: color, background-color, border-color, box-shadow, opacity;
-  transition-duration: 200ms;
+  transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+  transition-duration: 250ms;
   transition-timing-function: ease;
+}
+
+/* Hide scrollbar for Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }

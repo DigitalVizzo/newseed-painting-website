@@ -1,45 +1,38 @@
 'use client'
 
-import { useEffect } from 'react'
+import SmoothScroll from '@/components/SmoothScroll'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
-import About from '@/components/About'
+import TrustBar from '@/components/TrustBar'
+import BeforeAfter from '@/components/BeforeAfter'
 import Services from '@/components/Services'
+import About from '@/components/About'
 import Process from '@/components/Process'
+import Faq from '@/components/Faq'
 import Guarantee from '@/components/Guarantee'
 import Reviews from '@/components/Reviews'
-import Areas from '@/components/Areas'
 import CtaSection from '@/components/CtaSection'
 import Footer from '@/components/Footer'
+import FloatingCta from '@/components/FloatingCta'
 
 export default function Home() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <main style={{ background: '#0a0a0a', minHeight: '100vh' }}>
-      <Navbar />
-      <Hero />
-      <About />
-      <Services />
-      <Process />
-      <Guarantee />
-      <Reviews />
-      <Areas />
-      <CtaSection />
-      <Footer />
-    </main>
+    <SmoothScroll>
+      <main style={{ background: '#FAFAF8', minHeight: '100vh' }}>
+        <Navbar />
+        <Hero />
+        <TrustBar />
+        <BeforeAfter />
+        <Services />
+        <About />
+        <Process />
+        <Faq />
+        <Guarantee />
+        <Reviews />
+        <CtaSection />
+        <Footer />
+        <FloatingCta />
+      </main>
+    </SmoothScroll>
   )
 }

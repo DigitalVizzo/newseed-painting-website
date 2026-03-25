@@ -1,0 +1,16 @@
+{
+  "name": "New Seed Painting Group",
+  "short_name": "New Seed",
+  "description": "Sydney's premium residential & commercial painters.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF8",
+  "theme_color": "#E8A824",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

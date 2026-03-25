@@ -1,238 +1,264 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
-import { hero, contact } from '@/lib/data'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Phone } from 'lucide-react'
+import { contact } from '@/lib/data'
 
 export default function Hero() {
-  const [parallaxY, setParallaxY] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
+  const sectionRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-
-    const handleScroll = () => {
-      if (!isMobile) setParallaxY(window.scrollY * 0.3)
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', checkMobile)
-    }
-  }, [isMobile])
-
-  const gridPattern = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/G%3E%3C/svg%3E")`
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -80])
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.6], [0, 0.4])
 
   return (
     <section
+      ref={sectionRef}
       id="hero"
       style={{
         position: 'relative',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        background: '#0a0a0a',
+        height: '100vh',
+        minHeight: 700,
         overflow: 'hidden',
-        paddingTop: 72,
+        background: '#0a0a0a',
       }}
     >
-      {/* Grid pattern */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        pointerEvents: 'none',
-      }} />
-
-      {/* Radial gold gradient */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        background: 'radial-gradient(ellipse 60% 50% at 50% 60%, rgba(232,168,36,0.12) 0%, transparent 70%)',
-        pointerEvents: 'none',
-      }} />
-
-      {/* Parallax blur circle */}
-      {!isMobile && (
-        <div style={{
+      {/* Video background - ping pong loop */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-label="Premium interior painting showcase video"
+        ref={(el) => { if (el) el.playbackRate = 0.7 }}
+        style={{
           position: 'absolute',
-          top: '20%',
-          right: '-10%',
-          width: 600,
-          height: 600,
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(232,168,36,0.08) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-          transform: `translateY(${parallaxY}px)`,
-          transition: 'transform 0.1s linear',
-          pointerEvents: 'none',
-        }} />
-      )}
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+        }}
+      >
+        <source src="/images/video-pingpong.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark overlay */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        background: 'linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.4) 100%)',
+      }} />
+
+      {/* Bottom gradient for smooth section transition */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '30%',
+        background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)',
+      }} />
+
+      {/* Scroll-driven extra darkening */}
+      <motion.div style={{
+        position: 'absolute',
+        inset: 0,
+        background: 'black',
+        opacity: overlayOpacity,
+      }} />
 
       {/* Content */}
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '4rem 1.5rem', position: 'relative', zIndex: 1, width: '100%' }}>
-        <div style={{ maxWidth: 760 }}>
-          {/* Mobile logo */}
-          <div className="hero-logo-mobile" style={{ marginBottom: 32 }}>
-            <Image
-              src="/logo-dark.png"
-              alt="New Seed Painting Group"
-              width={120}
-              height={120}
-              style={{ borderRadius: '50%', objectFit: 'cover' }}
-            />
-          </div>
-
+      <motion.div
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          maxWidth: 1280,
+          margin: '0 auto',
+          padding: '0 2rem',
+          y: textY,
+        }}
+      >
+        <div style={{ maxWidth: 600 }}>
           {/* Badge */}
-          <div style={{ marginBottom: 24 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            style={{ marginBottom: 24 }}
+          >
             <span style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              border: '1px solid rgba(232,168,36,0.3)',
-              borderRadius: 9999,
-              padding: '6px 16px',
               color: '#E8A824',
-              fontSize: '0.875rem',
-              fontWeight: 500,
-              background: 'rgba(232,168,36,0.05)',
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              textShadow: '0 1px 3px rgba(0,0,0,0.5)',
             }}>
-              <span style={{
-                width: 6,
-                height: 6,
-                borderRadius: '50%',
-                background: '#E8A824',
-                display: 'inline-block',
-                animation: 'pulse 2s infinite',
-              }} />
-              {hero.badge}
+              From the Northern Beaches to All of Sydney
             </span>
+          </motion.div>
+
+          {/* Headline with glass shadow */}
+          <div style={{ position: 'relative', marginBottom: 24 }}>
+            {/* Glass blur layer behind text */}
+            <div aria-hidden className="font-serif" style={{
+              position: 'absolute',
+              inset: 0,
+              fontSize: 'clamp(2.75rem, 6vw, 5rem)',
+              fontWeight: 400,
+              lineHeight: 1.05,
+              color: 'transparent',
+              WebkitTextStroke: '0px transparent',
+              filter: 'blur(30px)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}>
+              <span style={{ display: 'block', color: 'rgba(255,255,255,0.6)' }}>Your Home Deserves</span>
+              <span style={{ display: 'block', color: 'rgba(232,168,36,0.7)' }}>More Than a Paint Job.</span>
+            </div>
+            {/* Actual text */}
+            <h1 className="font-serif" style={{
+              position: 'relative',
+              fontSize: 'clamp(2.75rem, 6vw, 5rem)',
+              fontWeight: 400,
+              lineHeight: 1.05,
+              color: 'white',
+              zIndex: 1,
+            }}>
+              <motion.span
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                style={{ display: 'block' }}
+              >
+                Your Home Deserves
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                style={{ display: 'block', color: '#E8A824' }}
+              >
+                More Than a Paint Job.
+              </motion.span>
+            </h1>
           </div>
 
-          {/* Headline */}
-          <h1
-            className="font-playfair"
+          {/* Sub */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.95 }}
             style={{
-              fontSize: 'clamp(2.5rem, 6vw, 5rem)',
-              fontWeight: 800,
-              lineHeight: 1.1,
-              marginBottom: 24,
-              color: 'white',
+              color: 'rgba(255,255,255,0.8)',
+              fontSize: 'clamp(0.95rem, 1.3vw, 1.1rem)',
+              lineHeight: 1.7,
+              maxWidth: 440,
+              marginBottom: 40,
+              textShadow: '0 1px 6px rgba(0,0,0,0.4)',
             }}
           >
-            Your Home Deserves{' '}
-            <span style={{
-              background: 'linear-gradient(135deg, #E8A824 0%, #fff 60%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              display: 'block',
-            }}>
-              More Than a Paint Job.
-            </span>
-          </h1>
-
-          {/* Subheadline */}
-          <p style={{
-            color: 'rgba(255,255,255,0.6)',
-            fontSize: '1.125rem',
-            lineHeight: 1.7,
-            maxWidth: 580,
-            marginBottom: 40,
-            fontFamily: "'Inter', sans-serif",
-          }}>
-            {hero.subheadline}
-          </p>
+            Based in the Northern Beaches, delivering premium painting across all of Sydney. Licensed, insured, 5-year guarantee.
+          </motion.p>
 
           {/* CTAs */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginBottom: 64 }}>
-            <a
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.15 }}
+            style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}
+          >
+            <motion.a
               href={contact.phoneHref}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
               style={{
-                background: '#E8A824',
-                color: '#0a0a0a',
+                background: 'rgba(232,168,36,0.15)',
+                backdropFilter: 'blur(12px) saturate(1.5)',
+                WebkitBackdropFilter: 'blur(12px) saturate(1.5)',
+                border: '1px solid rgba(232,168,36,0.3)',
+                color: '#E8A824',
                 fontWeight: 700,
                 padding: '1rem 2rem',
                 borderRadius: 9999,
                 textDecoration: 'none',
-                fontSize: '1rem',
-                boxShadow: '0 8px 30px rgba(232,168,36,0.2)',
-                display: 'inline-block',
-                transition: 'background 0.2s ease',
+                fontSize: '0.95rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                boxShadow: '0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(232,168,36,0.15)',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#CC8C1A')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#E8A824')}
             >
-              {hero.ctaPrimary}
-            </a>
-            <button
-              onClick={() => {
-                const el = document.querySelector('#services')
-                if (el) el.scrollIntoView({ behavior: 'smooth' })
-              }}
+              <Phone size={18} />
+              0426 745 547
+            </motion.a>
+            <motion.button
+              onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}
+              whileHover={{ scale: 1.04, background: 'rgba(255,255,255,0.15)' }}
+              whileTap={{ scale: 0.97 }}
               style={{
-                background: 'transparent',
-                border: '1px solid rgba(255,255,255,0.2)',
+                background: 'rgba(255,255,255,0.08)',
+                backdropFilter: 'blur(12px) saturate(1.5)',
+                WebkitBackdropFilter: 'blur(12px) saturate(1.5)',
+                border: '1px solid rgba(255,255,255,0.15)',
                 color: 'white',
                 fontWeight: 500,
                 padding: '1rem 2rem',
                 borderRadius: 9999,
                 cursor: 'pointer',
-                fontSize: '1rem',
+                fontSize: '0.95rem',
                 fontFamily: 'inherit',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)'
-                e.currentTarget.style.background = 'rgba(255,255,255,0.05)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'
-                e.currentTarget.style.background = 'transparent'
+                boxShadow: '0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)',
               }}
             >
-              {hero.ctaSecondary}
-            </button>
-          </div>
-
-          {/* Stats */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 24,
-          }} className="hero-stats">
-            {hero.stats.map((stat, i) => (
-              <div key={i} style={{
-                borderTop: '2px solid rgba(232,168,36,0.5)',
-                paddingTop: 16,
-              }}>
-                <p style={{ color: 'white', fontWeight: 700, fontSize: '0.9rem', marginBottom: 4, lineHeight: 1.3 }}>
-                  {stat.label}
-                </p>
-                <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', lineHeight: 1.4 }}>
-                  {stat.sub}
-                </p>
-              </div>
-            ))}
-          </div>
+              Our Services
+            </motion.button>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.5; }
-        }
-        @media (min-width: 1024px) {
-          .hero-logo-mobile { display: none !important; }
-          .hero-stats { grid-template-columns: repeat(3, 1fr) !important; }
-        }
-        @media (max-width: 600px) {
-          .hero-stats { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        style={{
+          position: 'absolute',
+          bottom: 40,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 2,
+        }}
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+          style={{
+            width: 26,
+            height: 40,
+            borderRadius: 13,
+            border: '1.5px solid rgba(255,255,255,0.3)',
+            display: 'flex',
+            justifyContent: 'center',
+            paddingTop: 8,
+          }}
+        >
+          <motion.div
+            animate={{ opacity: [0.3, 1, 0.3], y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+            style={{ width: 3, height: 7, borderRadius: 2, background: '#E8A824' }}
+          />
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

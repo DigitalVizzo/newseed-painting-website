@@ -3,24 +3,39 @@ import { MetadataRoute } from 'next';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://newseedpainting.com';
+
   return [
     {
-      url: 'https://newseedpainting.com',
+      url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 1,
     },
+    // Service anchors (deep links for better indexing)
     {
-      url: 'https://newseedpainting.com/#services',
+      url: `${baseUrl}/#services`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/#about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/#contact`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: 'https://newseedpainting.com/#contact',
+      url: `${baseUrl}/#faq`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.9,
+      priority: 0.6,
     },
   ];
 }
