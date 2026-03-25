@@ -385,7 +385,7 @@ export default function BeforeAfter() {
           >
             {/* After (full) */}
             <Image
-              src="/images/depois.jpg"
+              src="/newseed-painting-website/images/depois.jpg"
               alt="House after premium exterior painting by New Seed Painting Group, Sydney"
               fill
               style={{ objectFit: "cover" }}
@@ -401,7 +401,7 @@ export default function BeforeAfter() {
               }}
             >
               <Image
-                src="/images/antes.jpg"
+                src="/newseed-painting-website/images/antes.jpg"
                 alt="House before painting showing weathered exterior, Northern Beaches Sydney"
                 fill
                 style={{ objectFit: "cover" }}
