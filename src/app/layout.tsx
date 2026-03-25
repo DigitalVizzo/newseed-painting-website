@@ -265,7 +265,7 @@ export default function RootLayout({
     <html lang="en-AU" className={`${dmSerif.variable} ${inter.variable}`}>
       <head>
         <meta name="theme-color" content="#E8A824" />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/newseed-painting-website/manifest.json" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}

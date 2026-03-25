@@ -43,7 +43,7 @@ export default function Hero() {
           objectFit: 'cover',
         }}
       >
-        <source src="/images/video-pingpong.mp4" type="video/mp4" />
+        <source src="/newseed-painting-website/images/video-pingpong.mp4" type="video/mp4" />
       </video>
 
       {/* Dark overlay */}
