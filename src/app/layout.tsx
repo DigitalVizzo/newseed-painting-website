@@ -18,8 +18,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Premium Painters Sydney | New Seed Painting Group',
-    template: '%s | New Seed Painting Group',
+    default: 'New Seed Painting | Premium Painters Sydney',
+    template: '%s | New Seed Painting',
   },
   description:
     'Sydney\'s premium residential & commercial painters. New Seed Painting Group. Licensed, insured, 5-year workmanship guarantee. Dulux materials. Free quote.',
@@ -89,8 +89,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: '/newseed-painting-website/favicon.svg',
+    apple: '/newseed-painting-website/apple-touch-icon.png',
   },
   verification: {
     // google: 'YOUR_GOOGLE_VERIFICATION_CODE',
