@@ -11,7 +11,7 @@ export default function About() {
   return (
     <section
       id="about"
-      style={{ background: '#F7F5F0', padding: '7rem 0', position: 'relative', overflow: 'hidden' }}
+      style={{ background: '#F7F5F0', padding: '7rem 0', position: 'relative', overflow: 'hidden', zIndex: 1 }}
     >
       <LeafWatermark opacity={0.03} size={500} style={{ bottom: -100, right: -100, transform: 'rotate(-30deg)' }} />
 

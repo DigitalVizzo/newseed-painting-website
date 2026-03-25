@@ -9,7 +9,7 @@ const items = [
 
 export default function TrustBar() {
   return (
-    <section style={{
+    <section style={{ position: 'relative', zIndex: 1,
       background: 'white',
       borderTop: '1px solid #E8E4DC',
       borderBottom: '1px solid #E8E4DC',

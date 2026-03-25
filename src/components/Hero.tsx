@@ -25,6 +25,7 @@ export default function Hero() {
         minHeight: 700,
         overflow: 'hidden',
         background: '#0a0a0a',
+        zIndex: 2,
       }}
     >
       {/* Video background - ping pong loop */}

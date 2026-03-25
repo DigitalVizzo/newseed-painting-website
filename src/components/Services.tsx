@@ -20,7 +20,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      style={{ background: 'white', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}
+      style={{ background: 'white', padding: '6rem 0', position: 'relative', overflow: 'hidden', zIndex: 1 }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
         <AnimateOnScroll style={{ marginBottom: '3rem' }}>

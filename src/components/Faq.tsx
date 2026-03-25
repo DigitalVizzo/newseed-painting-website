@@ -11,7 +11,7 @@ export default function Faq() {
   return (
     <section
       id="faq"
-      style={{ background: 'white', padding: '7rem 0' }}
+      style={{ background: 'white', padding: '7rem 0', position: 'relative', zIndex: 1 }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
         <div className="faq-layout" style={{ display: 'grid', gap: '3rem', alignItems: 'start' }}>

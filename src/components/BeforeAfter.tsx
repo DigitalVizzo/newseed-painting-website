@@ -327,6 +327,7 @@ export default function BeforeAfter() {
         background: "#FAFAF8",
         padding: "7rem 0",
         position: "relative",
+        zIndex: 1,
         overflow: "hidden",
       }}
     >

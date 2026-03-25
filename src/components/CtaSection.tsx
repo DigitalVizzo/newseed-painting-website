@@ -9,7 +9,7 @@ export default function CtaSection() {
   return (
     <section
       id="contact"
-      style={{ background: '#1A1A1A', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}
+      style={{ background: '#1A1A1A', padding: '6rem 0', position: 'relative', overflow: 'hidden', zIndex: 1 }}
     >
       <LeafWatermark opacity={0.04} size={500} style={{ top: -80, right: -100, transform: 'rotate(-20deg)' }} />
 

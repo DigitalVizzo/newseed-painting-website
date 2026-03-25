@@ -14,6 +14,7 @@ import Reviews from '@/components/Reviews'
 import CtaSection from '@/components/CtaSection'
 import Footer from '@/components/Footer'
 import FloatingCta from '@/components/FloatingCta'
+import LeafCursor from '@/components/LeafCursor'
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
         <CtaSection />
         <Footer />
         <FloatingCta />
+      <LeafCursor />
       </main>
     </SmoothScroll>
   )
