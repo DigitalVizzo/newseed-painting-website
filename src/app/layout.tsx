@@ -116,7 +116,7 @@ const businessSchema = {
   priceRange: '$$',
   currenciesAccepted: 'AUD',
   paymentAccepted: 'Cash, Credit Card, Bank Transfer, EFTPOS',
-  slogan: 'Your Home Deserves More Than a Paint Job',
+  slogan: 'Where the Transformation Begins',
   knowsLanguage: ['en', 'pt'],
   address: {
     '@type': 'PostalAddress',

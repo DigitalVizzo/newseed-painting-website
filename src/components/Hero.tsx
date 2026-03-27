@@ -87,26 +87,7 @@ export default function Hero() {
         }}
       >
         <div style={{ maxWidth: 600 }}>
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            style={{ marginBottom: 24 }}
-          >
-            <span style={{
-              color: '#E8A824',
-              fontSize: '0.75rem',
-              fontWeight: 600,
-              letterSpacing: '0.25em',
-              textTransform: 'uppercase',
-              textShadow: '0 1px 3px rgba(0,0,0,0.5)',
-            }}>
-              From the Northern Beaches to All of Sydney
-            </span>
-          </motion.div>
-
-          {/* Headline with glass shadow */}
+            {/* Headline with glass shadow */}
           <div style={{ position: 'relative', marginBottom: 24 }}>
             {/* Glass blur layer behind text */}
             <div aria-hidden className="font-serif" style={{

@@ -53,15 +53,19 @@ export default function Services() {
               <StaggerItem key={service.id}>
                 <motion.div
                   whileHover={{ y: -6, boxShadow: '0 12px 40px rgba(0,0,0,0.08)' }}
+                  className="service-card"
                   style={{
                     background: '#F7F5F0',
+                    backgroundImage: 'linear-gradient(to left, #F7F5F0 40%, #EDE9E0 60%, #F5E6C8 80%, #F0DDB3 100%)',
+                    backgroundSize: '250% 100%',
+                    backgroundPosition: 'right',
                     borderRadius: 20,
                     padding: '2rem',
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: 16,
-                    transition: 'box-shadow 0.3s ease',
+                    transition: 'background-position 0.7s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease',
                     boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
                   }}
                 >
@@ -94,6 +98,12 @@ export default function Services() {
         .services-grid { grid-template-columns: 1fr; }
         @media (min-width: 640px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+        .service-card:hover { background-position: left !important; }
+        .service-card:hover h3 { color: #1A1A1A !important; }
+        .service-card:hover p { color: rgba(26,26,26,0.5) !important; }
+        .service-card:hover .service-icon-wrap { background: rgba(232,168,36,0.15) !important; }
+        .service-card h3, .service-card p { transition: color 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+        .service-card .service-icon-wrap { transition: background 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
       `}</style>
     </section>
   )
