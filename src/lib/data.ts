@@ -223,11 +223,6 @@ export const faq = [
       "If any of our work peels, cracks, or fails within 5 years due to workmanship, we return and fix it at no cost. No fine print, no loopholes. We provide the guarantee in writing at project completion.",
   },
   {
-    question: "Do you paint in the rain? What about weather delays?",
-    answer:
-      "We do not paint exteriors in rain or high humidity, as it compromises adhesion and finish quality. If weather delays occur, we communicate promptly and adjust the schedule. Interior work can usually continue unaffected.",
-  },
-  {
     question: "What areas of Sydney do you serve?",
     answer:
       "We're based in Manly Vale and serve all of Sydney. From the Northern Beaches to the Eastern Suburbs, North Shore to Western Sydney, and everywhere in between. If you're not sure whether we cover your area, just give us a call.",
