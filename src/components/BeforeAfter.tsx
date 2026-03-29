@@ -402,7 +402,7 @@ export default function BeforeAfter() {
             >
               <Image
                 src="/newseed-painting-website/images/antes.jpg"
-                alt="House before painting showing weathered exterior, Northern Beaches Sydney"
+                alt="House before painting showing weathered exterior, Sydney"
                 fill
                 style={{ objectFit: "cover" }}
                 sizes="(max-width: 1024px) 100vw, 960px"
@@ -524,7 +524,7 @@ export default function BeforeAfter() {
               fontStyle: "italic",
             }}
           >
-            Full exterior repaint, Northern Beaches
+            Full exterior repaint, Sydney
           </p>
         </AnimateOnScroll>
       </div>

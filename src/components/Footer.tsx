@@ -67,13 +67,9 @@ export default function Footer() {
           {/* Col 3: Areas */}
           <div>
             <h4 style={{ color: 'white', fontWeight: 600, fontSize: '0.85rem', marginBottom: 16, letterSpacing: '0.05em' }}>Areas</h4>
-            <p style={{ color: '#E8A824', fontSize: '0.75rem', fontWeight: 600, marginBottom: 8 }}>Northern Beaches</p>
+            <p style={{ color: '#E8A824', fontSize: '0.75rem', fontWeight: 600, marginBottom: 8 }}>Sydney</p>
             <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.35)' }}>
-              {areas.northern.slice(0, 8).join(' · ')}
-            </p>
-            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', fontWeight: 600, marginBottom: 8, marginTop: 16 }}>Greater Sydney</p>
-            <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.3)' }}>
-              {areas.greater.slice(0, 5).join(' · ')}
+              {[...areas.northern.slice(0, 4), ...areas.greater.slice(0, 4)].join(' · ')}
             </p>
           </div>
         </div>

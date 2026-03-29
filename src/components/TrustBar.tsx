@@ -3,7 +3,7 @@ import { Shield, CheckCircle, Palette, Phone } from 'lucide-react'
 const items = [
   { icon: Shield, label: 'Licensed & Insured' },
   { icon: CheckCircle, label: '5-Year Guarantee' },
-  { icon: Palette, label: 'Dulux Premium' },
+  { icon: Palette, label: 'Premium Paints' },
   { icon: Phone, label: 'Free Quotes' },
 ]
 

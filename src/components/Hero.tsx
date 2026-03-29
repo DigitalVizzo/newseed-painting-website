@@ -79,133 +79,148 @@ export default function Hero() {
           zIndex: 1,
           height: '100%',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
           maxWidth: 1280,
           margin: '0 auto',
           padding: '0 2rem',
           y: textY,
         }}
       >
-        <div style={{ maxWidth: 600 }}>
-            {/* Headline with glass shadow */}
-          <div style={{ position: 'relative', marginBottom: 24 }}>
-            {/* Glass blur layer behind text */}
-            <div aria-hidden className="font-serif" style={{
-              position: 'absolute',
-              inset: 0,
-              fontSize: 'clamp(2.75rem, 6vw, 5rem)',
-              fontWeight: 400,
-              lineHeight: 1.05,
-              color: 'transparent',
-              WebkitTextStroke: '0px transparent',
-              filter: 'blur(30px)',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              pointerEvents: 'none',
-              zIndex: 0,
-            }}>
-              <span style={{ display: 'block', color: 'rgba(255,255,255,0.6)' }}>Your Home Deserves</span>
-              <span style={{ display: 'block', color: 'rgba(232,168,36,0.7)' }}>More Than a Paint Job.</span>
-            </div>
-            {/* Actual text */}
-            <h1 className="font-serif" style={{
-              position: 'relative',
-              fontSize: 'clamp(2.75rem, 6vw, 5rem)',
-              fontWeight: 400,
-              lineHeight: 1.05,
-              color: 'white',
-              zIndex: 1,
-            }}>
-              <motion.span
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                style={{ display: 'block' }}
-              >
-                Your Home Deserves
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                style={{ display: 'block', color: '#E8A824' }}
-              >
-                More Than a Paint Job.
-              </motion.span>
-            </h1>
+        {/* Slogan */}
+        <div style={{ position: 'relative', marginBottom: 28 }}>
+          {/* Glass blur layer behind slogan */}
+          <div aria-hidden className="font-serif" style={{
+            position: 'absolute',
+            inset: 0,
+            fontSize: 'clamp(3rem, 7vw, 5.5rem)',
+            fontWeight: 400,
+            lineHeight: 1.05,
+            color: 'transparent',
+            WebkitTextStroke: '0px transparent',
+            filter: 'blur(30px)',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}>
+            <span style={{ display: 'block', color: 'rgba(255,255,255,0.6)' }}>Where the</span>
+            <span style={{ display: 'block', color: 'rgba(232,168,36,0.7)' }}>Transformation Begins.</span>
           </div>
+          <h1 className="font-serif" style={{
+            position: 'relative',
+            fontSize: 'clamp(3rem, 7vw, 5.5rem)',
+            fontWeight: 400,
+            lineHeight: 1.05,
+            color: 'white',
+            zIndex: 1,
+          }}>
+            <motion.span
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              style={{ display: 'block' }}
+            >
+              Where the
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              style={{ display: 'block', color: '#E8A824' }}
+            >
+              Transformation Begins.
+            </motion.span>
+          </h1>
+        </div>
 
-          {/* Sub */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.95 }}
+        {/* Decorative line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 1.0 }}
+          style={{
+            width: 60,
+            height: 1,
+            background: 'linear-gradient(90deg, transparent, rgba(232,168,36,0.6), transparent)',
+            marginBottom: 24,
+          }}
+        />
+
+        {/* Supporting text */}
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.1 }}
+          style={{
+            color: 'rgba(255,255,255,0.6)',
+            fontSize: 'clamp(0.95rem, 1.4vw, 1.15rem)',
+            fontWeight: 300,
+            letterSpacing: '0.04em',
+            lineHeight: 1.6,
+            maxWidth: 500,
+            marginBottom: 48,
+            textShadow: '0 1px 6px rgba(0,0,0,0.4)',
+          }}
+        >
+          Your Home Deserves More Than a Paint Job.
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.3 }}
+          style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 14 }}
+        >
+          <motion.a
+            href={contact.phoneHref}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
             style={{
-              color: 'rgba(255,255,255,0.8)',
-              fontSize: 'clamp(0.95rem, 1.3vw, 1.1rem)',
-              lineHeight: 1.7,
-              maxWidth: 440,
-              marginBottom: 40,
-              textShadow: '0 1px 6px rgba(0,0,0,0.4)',
+              background: 'rgba(232,168,36,0.15)',
+              backdropFilter: 'blur(12px) saturate(1.5)',
+              WebkitBackdropFilter: 'blur(12px) saturate(1.5)',
+              border: '1px solid rgba(232,168,36,0.3)',
+              color: '#E8A824',
+              fontWeight: 700,
+              padding: '1rem 2rem',
+              borderRadius: 9999,
+              textDecoration: 'none',
+              fontSize: '0.95rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              boxShadow: '0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(232,168,36,0.15)',
             }}
           >
-            Based in the Northern Beaches, delivering premium painting across all of Sydney. Licensed, insured, 5-year guarantee.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.15 }}
-            style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}
+            <Phone size={18} />
+            0426 745 547
+          </motion.a>
+          <motion.button
+            onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}
+            whileHover={{ scale: 1.04, background: 'rgba(255,255,255,0.15)' }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              background: 'rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(12px) saturate(1.5)',
+              WebkitBackdropFilter: 'blur(12px) saturate(1.5)',
+              border: '1px solid rgba(255,255,255,0.15)',
+              color: 'white',
+              fontWeight: 500,
+              padding: '1rem 2rem',
+              borderRadius: 9999,
+              cursor: 'pointer',
+              fontSize: '0.95rem',
+              fontFamily: 'inherit',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)',
+            }}
           >
-            <motion.a
-              href={contact.phoneHref}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              style={{
-                background: 'rgba(232,168,36,0.15)',
-                backdropFilter: 'blur(12px) saturate(1.5)',
-                WebkitBackdropFilter: 'blur(12px) saturate(1.5)',
-                border: '1px solid rgba(232,168,36,0.3)',
-                color: '#E8A824',
-                fontWeight: 700,
-                padding: '1rem 2rem',
-                borderRadius: 9999,
-                textDecoration: 'none',
-                fontSize: '0.95rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                boxShadow: '0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(232,168,36,0.15)',
-              }}
-            >
-              <Phone size={18} />
-              0426 745 547
-            </motion.a>
-            <motion.button
-              onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}
-              whileHover={{ scale: 1.04, background: 'rgba(255,255,255,0.15)' }}
-              whileTap={{ scale: 0.97 }}
-              style={{
-                background: 'rgba(255,255,255,0.08)',
-                backdropFilter: 'blur(12px) saturate(1.5)',
-                WebkitBackdropFilter: 'blur(12px) saturate(1.5)',
-                border: '1px solid rgba(255,255,255,0.15)',
-                color: 'white',
-                fontWeight: 500,
-                padding: '1rem 2rem',
-                borderRadius: 9999,
-                cursor: 'pointer',
-                fontSize: '0.95rem',
-                fontFamily: 'inherit',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)',
-              }}
-            >
-              Our Services
-            </motion.button>
-          </motion.div>
-        </div>
+            Our Services
+          </motion.button>
+        </motion.div>
       </motion.div>
 
       {/* Scroll indicator */}
