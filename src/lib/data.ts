@@ -117,7 +117,7 @@ export const guarantee = {
 // Set inviteMode to false once real Google Reviews are available.
 export const reviews = {
   inviteMode: true,
-  inviteTitle: "The First to Experience the New Seed Difference",
+  inviteTitle: "The New Seed Experience",
   inviteText:
     "We started New Seed because we believe clients deserve more than a paint job. They deserve trust, clear communication, and a team that respects their home. If you've worked with us, your words mean everything right now.",
   inviteCta: "Leave Us a Google Review →",
@@ -134,7 +134,7 @@ export const reviews = {
 export const areas = {
   title: "Proudly Serving All of Sydney",
   intro:
-    "Based in Manly Vale, we serve homeowners, builders, and property managers across all of Sydney. From the Northern Beaches to the Inner West, Eastern Suburbs to Western Sydney, we bring the same premium standard wherever the job takes us.",
+    "Based in Balgowlah, we serve homeowners, builders, and property managers across all of Sydney. From the Northern Beaches to the Inner West, Eastern Suburbs to Western Sydney, we bring the same premium standard wherever the job takes us.",
   northern: [
     "Manly",
     "Manly Vale",
@@ -173,7 +173,7 @@ export const contact = {
   instagram: "https://instagram.com/newseedpainting",
   email: "info@newseedgroup.com.au",
   emailHref: "mailto:info@newseedgroup.com.au",
-  address: "Manly Vale, NSW 2093 · Serving All of Sydney",
+  address: "Balgowlah, NSW 2093 · Serving All of Sydney",
   license: "NSW",
   abn: "65 679 342 673",
 };
@@ -225,6 +225,6 @@ export const faq = [
   {
     question: "What areas of Sydney do you serve?",
     answer:
-      "We're based in Manly Vale and serve all of Sydney. From the Northern Beaches to the Eastern Suburbs, North Shore to Western Sydney, and everywhere in between. If you're not sure whether we cover your area, just give us a call.",
+      "We're based in Balgowlah and serve all of Sydney. From the Northern Beaches to the Eastern Suburbs, North Shore to Western Sydney, and everywhere in between. If you're not sure whether we cover your area, just give us a call.",
   },
 ];

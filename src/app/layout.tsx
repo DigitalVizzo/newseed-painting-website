@@ -89,8 +89,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/newseed-painting-website/favicon.svg',
-    apple: '/newseed-painting-website/apple-touch-icon.png',
+    icon: '/favicon.svg',
+    apple: '/apple-touch-icon.png',
   },
   verification: {
     // google: 'YOUR_GOOGLE_VERIFICATION_CODE',
@@ -265,7 +265,7 @@ export default function RootLayout({
     <html lang="en-AU" className={`${dmSerif.variable} ${inter.variable}`}>
       <head>
         <meta name="theme-color" content="#E8A824" />
-        <link rel="manifest" href="/newseed-painting-website/manifest.json" />
+        <link rel="manifest" href="/manifest.json" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}

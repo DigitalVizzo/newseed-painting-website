@@ -1,7 +1,7 @@
 'use client'
 
 import { Phone, Mail, MapPin } from 'lucide-react'
-import { contact, services, areas } from '@/lib/data'
+import { contact, services } from '@/lib/data'
 
 const filteredServices = services.filter((s) => s.id !== 'roof')
 
@@ -67,9 +67,9 @@ export default function Footer() {
           {/* Col 3: Areas */}
           <div>
             <h4 style={{ color: 'white', fontWeight: 600, fontSize: '0.85rem', marginBottom: 16, letterSpacing: '0.05em' }}>Areas</h4>
-            <p style={{ color: '#E8A824', fontSize: '0.75rem', fontWeight: 600, marginBottom: 8 }}>Sydney</p>
+            <p style={{ color: '#E8A824', fontSize: '0.75rem', fontWeight: 600, marginBottom: 8 }}>Sydney Wide</p>
             <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.35)' }}>
-              {[...areas.northern.slice(0, 4), ...areas.greater.slice(0, 4)].join(' · ')}
+              We serve all of Greater Sydney.
             </p>
           </div>
         </div>
