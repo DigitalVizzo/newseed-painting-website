@@ -79,6 +79,19 @@ export default function Footer() {
           <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.7rem' }}>
             &copy; 2026 New Seed Painting Group Pty Ltd &middot; ABN {contact.abn} &middot; {contact.license}
           </p>
+          <p style={{ color: 'rgba(255,255,255,0.15)', fontSize: '0.65rem', marginTop: 6 }}>
+            Developed by{' '}
+            <a
+              href="https://vizzo.digital"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'rgba(255,255,255,0.25)', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.25)')}
+            >
+              Vizzo Digital
+            </a>
+          </p>
         </div>
       </div>
 
